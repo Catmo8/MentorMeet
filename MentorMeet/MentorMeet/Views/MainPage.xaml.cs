@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Xamarin.Forms;
+
 using Xamarin.Forms.Xaml;
 
 namespace MentorMeet.Views
@@ -15,4 +17,5 @@ namespace MentorMeet.Views
             InitializeComponent();
         }
     }
+
 }

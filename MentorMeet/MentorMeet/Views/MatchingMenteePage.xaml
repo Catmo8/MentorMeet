@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MentorMeet.Views.MatchingMenteePage">
+    <ContentPage.Content>
+        <Grid x:Name="matchScreen">
+            <Grid.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Left" Swiped="OnSwiped"/>
+                <SwipeGestureRecognizer Direction="Right" Swiped="OnSwiped"/>
+            </Grid.GestureRecognizers>
+            <!--<BoxView x:Name="profileBox"
+                     Color="Bisque"
+                     CornerRadius="23"
+                     WidthRequest="310"
+                     HeightRequest="400"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     Grid.Row="0">
+            </BoxView>
+            <BoxView Grid.Row="0"
+                     CornerRadius="26"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     TranslationY="0"
+                     TranslationX="0"
+                     WidthRequest="320"
+                     HeightRequest="410"
+                     Opacity="0.1" Color="#000000"/>
+            <BoxView Grid.Row="0"
+                     CornerRadius="26"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     TranslationY="42"
+                     TranslationX="0"
+                     WidthRequest="310"
+                     HeightRequest="295"
+                     Opacity="0.1" Color="#000000"/>
+            <BoxView Grid.Row="0"
+                     CornerRadius="26"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     TranslationY="44"
+                     TranslationX="0"
+                     WidthRequest="310"
+                     HeightRequest="295"
+                     Opacity="0.1" Color="#000000"/>
+            <BoxView Grid.Row="0"
+                     CornerRadius="26"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     TranslationY="46"
+                     TranslationX="0"
+                     WidthRequest="310"
+                     HeightRequest="295"
+                     Opacity="0.1" Color="#000000"/>-->                   
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
