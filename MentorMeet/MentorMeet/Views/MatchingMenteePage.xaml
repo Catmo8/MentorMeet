@@ -10,6 +10,7 @@
             <Grid.GestureRecognizers>
                 <SwipeGestureRecognizer Direction="Left" Swiped="OnSwiped"/>
                 <SwipeGestureRecognizer Direction="Right" Swiped="OnSwiped"/>
+                <TapGestureRecognizer Tapped="OnTapped" NumberOfTapsRequired="1"/>
             </Grid.GestureRecognizers>
             <!--<BoxView x:Name="profileBox"
                      Color="Bisque"

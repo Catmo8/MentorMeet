@@ -75,7 +75,7 @@ namespace MentorMeet.Views
                 boxViews[i] = tempBox;
             }
 
-            //Adds each boxview gradient to the UI
+            //Adds each boxview shadow gradient to the UI
             foreach (BoxView b in boxViews)
                 matchScreen.Children.Add(b);
 
@@ -145,6 +145,11 @@ namespace MentorMeet.Views
                 matchScreen.TranslationX = -500;
                 await matchScreen.TranslateTo(matchScreen.TranslationX + 500, matchScreen.TranslationY - 100);
             }
+        }
+
+        async void OnTapped(object sender)
+        {
+            await (sender as Grid).TranslateTo(0, 0);
         }
     }
 }
