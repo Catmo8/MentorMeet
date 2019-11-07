@@ -13,7 +13,9 @@
                 <TapGestureRecognizer Tapped="OnTapped"/>
             
             </Grid.GestureRecognizers>
-            <BoxView Color="Black"
+
+            
+            <!--<BoxView Color="Black"
                      CornerRadius="104"
                      WidthRequest="104"
                      HeightRequest="104"
@@ -38,8 +40,8 @@
                      HorizontalOptions="Center"
                      VerticalOptions="Center"
                      Grid.Row="0">
-            </BoxView>
-           
+            </BoxView>-->
+          
             
         </Grid>
     </ContentPage.Content>

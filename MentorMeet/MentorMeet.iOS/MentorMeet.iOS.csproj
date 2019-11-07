@@ -26,6 +26,7 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -119,6 +120,7 @@
     <BundleResource Include="Resources\xamarin_logo%402x.png" />
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\LSU.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -135,7 +137,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\MentorMeet\MentorMeet.csproj">
-      <Project>{B1386BE8-C6BD-4C9F-B466-97FF6EBB8F9C}</Project>
+      <Project>{5565CEDD-8406-468F-9B5E-B34D2E42D0D9}</Project>
       <Name>MentorMeet</Name>
     </ProjectReference>
   </ItemGroup>

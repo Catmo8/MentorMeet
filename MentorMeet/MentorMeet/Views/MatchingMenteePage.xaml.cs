@@ -12,41 +12,47 @@ namespace MentorMeet.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MatchingMenteePage : ContentPage
     {
-        private bool tapped;
-        private BoxView backBox;
-        private BoxView[] boxViews;
+        private bool tapped; //Keeps track of the tapped state to control which animations (expand/shrink) get executed on the profile card
+        private BoxView profileDetailsBox;
+        private BoxView[] cardShadow;
+        private BoxView[] detailCardShadow;
+        private BoxView[] profilePictureShadow;
         private BoxView profileCircle;
-        private BoxView[] profileShadow;
+        private BoxView blankBox;
         public MatchingMenteePage()
         { 
             InitializeComponent();
+
             tapped = false;
-            var translateY = 40;
             var opacity = 0.05;
             var profileCircleSize = 100;
-            boxViews = generateShadowBoxes(10, 26, 40);
-            //Generates shadow for entire profile card
-            for (int i = 0; i < 10; i++)
+
+            /*Function takes amount of boxviews(smoothness of the gradient), corner radius, width, height,
+             *starting position on the y-axis(function autocenters each box so this the starting position with respect to the center.
+             *If 0, the box will be in the center of the UI) and whether or not the x axis needs to be adjusted per box like the y axis(for a perspective effect).
+             *Both Y(int) and X(bool) parameters are optional and will default to 0 (the center in this case) and false respectively;
+             */
+            cardShadow = generateShadowBoxes(10, 26, 312, 402, 0, true); //Generates shadow for entire profile card
+            detailCardShadow = generateShadowBoxes(10, 26, 310, 295, 40); //Generates shadow for the profile details
+
+            //Generates shadow for the profile picture circle
+            profilePictureShadow = new BoxView[10];
+            var profilePictureShadowSize = profileCircleSize + 4;
+            for (int i = 0; i < profilePictureShadow.Length; i++)
             {
                 BoxView tempBox = new BoxView();
-                tempBox.CornerRadius = 26;
                 tempBox.HorizontalOptions = LayoutOptions.Center;
                 tempBox.VerticalOptions = LayoutOptions.Center;
-                tempBox.WidthRequest = 312;
-                tempBox.HeightRequest = 402;
-                tempBox.TranslationY = i;
-                tempBox.TranslationX = (i) / 2;
-
+                tempBox.WidthRequest = profilePictureShadowSize + i;
+                tempBox.HeightRequest = tempBox.WidthRequest;
+                tempBox.CornerRadius = tempBox.WidthRequest / 2;
                 tempBox.Color = Color.FromHex("#000000");
-
                 tempBox.Opacity = opacity;
-                boxViews[i] = tempBox;
+                tempBox.TranslationY = -100;
+                profilePictureShadow[i] = tempBox;
             }
 
-            foreach (BoxView b in boxViews)
-                matchScreen.Children.Add(b);
-
-            //adds pic place holder...peach colored thing
+            //Creates pic place holder...peach colored thing
             BoxView picPlaceHolder = new BoxView();
             picPlaceHolder.Color = Color.Bisque;
             picPlaceHolder.CornerRadius = 26;
@@ -54,81 +60,59 @@ namespace MentorMeet.Views
             picPlaceHolder.HeightRequest = 400;
             picPlaceHolder.HorizontalOptions = LayoutOptions.Center;
             picPlaceHolder.VerticalOptions = LayoutOptions.Center;
-            matchScreen.Children.Add(picPlaceHolder);
-            /*Function takes amount of boxes(smoothness of the gradient), corner radius, 
-             *starting position on the y-axis(function autocenters each box so this the starting position with respect to the center. If 0, the box will be in the center of the UI)
-             *and starting position of x-axis(same explaination as the Y-axis).
-             *Both axis parameters are optional and will default to 0 (the center);
-             */
 
-            //Generates the boxviews for the shadow's gradient effect
-            //This overwrites the returned array from "generateShadowBoxes" until I figure out why it's not working
-            for (int i = 0; i < boxViews.Length; i++)
-            {
-                BoxView tempBox = new BoxView();
-                tempBox.CornerRadius = 26;
-                tempBox.HorizontalOptions = LayoutOptions.Center;
-                tempBox.VerticalOptions = LayoutOptions.Center;
-                tempBox.WidthRequest = 310;
-                tempBox.HeightRequest = 295;
-                tempBox.TranslationY = translateY;
-                tempBox.Color = Color.FromHex("#000000");
-                //Moves the next box down one position
-                translateY++;
-                tempBox.Opacity = opacity;
-                boxViews[i] = tempBox;
-            }
+            Image organizationLogo = new Image();
+            organizationLogo.Source = "LSU.png";
+            organizationLogo.WidthRequest = 290;
+            organizationLogo.HeightRequest = 100;
+            organizationLogo.HorizontalOptions = LayoutOptions.Center;
+            organizationLogo.VerticalOptions = LayoutOptions.Center;
+            organizationLogo.TranslationY = organizationLogo.TranslationY - 140;
+            
+            
 
-            //Adds each boxview shadow gradient to the UI
-            foreach (BoxView b in boxViews)
-                matchScreen.Children.Add(b);
-
-
-
-            //Adds the white boxview to the UI that will hold the user info.
-            backBox = new BoxView();
-            backBox.Color = Color.White;
-            backBox.CornerRadius = 23;
-            backBox.HorizontalOptions = LayoutOptions.Center;
-            backBox.VerticalOptions = LayoutOptions.Center;
-            backBox.TranslationY = 50;
-            backBox.HeightRequest = 300;
-            backBox.WidthRequest = 310;
-            matchScreen.Children.Add(backBox);
-
-            profileShadow = new BoxView[10];
-            var profileShadowSize = profileCircleSize + 4;
-            for (int i = 0; i < profileShadow.Length; i++)
-            {
-                BoxView tempBox = new BoxView();
-                tempBox.CornerRadius = profileShadowSize + i;
-                tempBox.HorizontalOptions = LayoutOptions.Center;
-                tempBox.VerticalOptions = LayoutOptions.Center;
-                tempBox.WidthRequest = profileShadowSize + i;
-                tempBox.HeightRequest = profileShadowSize + i;
-                tempBox.Color = Color.FromHex("#000000");
-                tempBox.Opacity = opacity;
-                profileShadow[i] = tempBox;
-            }
-
-            foreach(BoxView b in profileShadow)
-            {
-                matchScreen.Children.Add(b);
-            }
-
+            //Creates the white boxview to the UI that will hold the profile details.
+            profileDetailsBox = new BoxView();
+            profileDetailsBox.Color = Color.White;
+            profileDetailsBox.CornerRadius = 23;
+            profileDetailsBox.HorizontalOptions = LayoutOptions.Center;
+            profileDetailsBox.VerticalOptions = LayoutOptions.Center;
+            profileDetailsBox.TranslationY = 50;
+            profileDetailsBox.HeightRequest = 300;
+            profileDetailsBox.WidthRequest = 310;
+              
             profileCircle = new BoxView();
-            profileCircle.CornerRadius = profileCircleSize;
+            
             profileCircle.HorizontalOptions = LayoutOptions.Center;
             profileCircle.VerticalOptions = LayoutOptions.Center;
             profileCircle.WidthRequest = profileCircleSize;
-            profileCircle.HeightRequest = profileCircleSize;
-            profileCircle.Color = Color.Lavender;
+            profileCircle.HeightRequest = profileCircle.WidthRequest;
+            profileCircle.CornerRadius = profileCircle.WidthRequest/2;
+            profileCircle.Color = Color.LightGray;
+            profileCircle.TranslationY = -100;
+
+            //Adds all created BoxViews to the UI
+            foreach (BoxView b in cardShadow)
+                matchScreen.Children.Add(b);
+
+            matchScreen.Children.Add(picPlaceHolder);
+            matchScreen.Children.Add(organizationLogo);
+
+            foreach(BoxView b in detailCardShadow)
+                matchScreen.Children.Add(b);
+
+            foreach (BoxView b in profilePictureShadow)
+            {
+                matchScreen.Children.Add(b);
+            }
+
+            matchScreen.Children.Add(profileDetailsBox);
             matchScreen.Children.Add(profileCircle);
             
             
         }
 
-        public BoxView[] generateShadowBoxes(int numOfBoxes, int cornerRadius, int startY = 0, int startX = 0)
+        public BoxView[] generateShadowBoxes(int numOfBoxes, int cornerRadius, int width, int height, int startY = 0, bool moveX = false)
         {
             
             if(numOfBoxes > 15)
@@ -138,29 +122,37 @@ namespace MentorMeet.Views
 
             BoxView[] boxViews = new BoxView[numOfBoxes];
 
-            int opacity = 1/numOfBoxes; //to gradually and equally increase the opacity as the boxviews overlap.
-            //Generates the boxviews for the shadow's gradient effect
+            double opacity = 1/(double)numOfBoxes; //to gradually and equally increase the opacity as the cardShadow overlap.
+            //Generates the cardShadow for the shadow's gradient effect
+
             for (int i = 0; i < numOfBoxes; i++)
             {
-                boxViews[i] = new BoxView();
-                boxViews[i].CornerRadius = cornerRadius;
-                boxViews[i].HorizontalOptions = LayoutOptions.Center;
-                boxViews[i].VerticalOptions = LayoutOptions.Center;
-                boxViews[i].WidthRequest = 310;
-                boxViews[i].HeightRequest = 295;
-                boxViews[i].TranslationY = startY;
-                boxViews[i].Color = Color.FromHex("#000000");
-                //Moves the next box down one position
-                startY++;
-                boxViews[i].Opacity = opacity;
+                BoxView tempBox = new BoxView();
+                tempBox.CornerRadius = cornerRadius;
+                tempBox.HorizontalOptions = LayoutOptions.Center;
+                tempBox.VerticalOptions = LayoutOptions.Center;
+                tempBox.WidthRequest = width;
+                tempBox.HeightRequest = height;
+                tempBox.TranslationY = i + startY;
+                if(moveX)
+                    tempBox.TranslationX = (i) / 2;
+
+                tempBox.Color = Color.FromHex("#000000");
+
+                tempBox.Opacity = opacity;
+                boxViews[i] = tempBox;
             }
             
             return boxViews;
         }
 
-        //Handles the swipe gestures and their respective animations
+        //Handles the swipe gestures and their respective animations.
+        //Resets the UI objects to their original positions and then recycles the card.
         async void OnSwiped(object sender, SwipedEventArgs e)
         {
+            if (tapped)
+                resetProfileCard();
+
             if (e.Direction == SwipeDirection.Left)
             {
                 matchScreen.RotateTo(-25);
@@ -183,25 +175,61 @@ namespace MentorMeet.Views
 
         async void OnTapped(object sender, EventArgs args)
         {
+            //If the card has been tapped already, reset all views to their original states
             if (tapped)
+                resetProfileCard();
+            else 
             {
-                backBox.ScaleTo(1.2);
-                foreach(BoxView b in boxViews)
+                profileDetailsBox.ScaleTo(1.2);
+                profileCircle.TranslateTo(0, profileCircle.TranslationY - 50);
+                foreach (BoxView b in detailCardShadow)
                 {
                     b.ScaleTo(1.25);
+                    b.TranslateTo(0, b.TranslationY + 5);
                 }
-                tapped = false;
-            }
-            else
-            {
-                backBox.ScaleTo(1);
-                foreach (BoxView b in boxViews)
+                foreach (BoxView b in profilePictureShadow)
                 {
-                    b.ScaleTo(1);
+                    b.TranslateTo(0, b.TranslationY - 50);
+                    b.ScaleTo(1.05);
                 }
                 tapped = true;
             }
-            
+        }
+
+        void resetProfileCard()
+        {
+            foreach (object o in matchScreen.Children)
+            {
+                BoxView b = new BoxView();
+                if (o.GetType() == b.GetType())
+                {
+                    b = o as BoxView;
+                    resetScaling(b);
+                }
+            }
+
+            foreach (BoxView b in profilePictureShadow)
+                b.TranslateTo(0, b.TranslationY + 50);
+
+            profileCircle.TranslateTo(0, profileCircle.TranslationY + 50);
+
+            foreach (BoxView b in detailCardShadow)
+                b.TranslateTo(0, b.TranslationY - 5);
+
+
+            tapped = false;
+        }
+
+        void resetScaling(BoxView box)
+        {
+            box.ScaleTo(1);
+        }
+
+        //to handle the shadows which are arrays
+        void resetScaling(BoxView[] box)
+        {
+            foreach (BoxView b in box)
+                b.ScaleTo(1);
         }
     }
 }
