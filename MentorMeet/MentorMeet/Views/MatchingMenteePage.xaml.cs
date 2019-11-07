@@ -12,12 +12,19 @@ namespace MentorMeet.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MatchingMenteePage : ContentPage
     {
+        private bool tapped;
+        private BoxView backBox;
+        private BoxView[] boxViews;
+        private BoxView profileCircle;
+        private BoxView[] profileShadow;
         public MatchingMenteePage()
         { 
             InitializeComponent();
+            tapped = false;
             var translateY = 40;
             var opacity = 0.05;
-            BoxView[] boxViews = generateShadowBoxes(10, 26, 40);
+            var profileCircleSize = 100;
+            boxViews = generateShadowBoxes(10, 26, 40);
             //Generates shadow for entire profile card
             for (int i = 0; i < 10; i++)
             {
@@ -53,9 +60,6 @@ namespace MentorMeet.Views
              *and starting position of x-axis(same explaination as the Y-axis).
              *Both axis parameters are optional and will default to 0 (the center);
              */
-           
-            
-            
 
             //Generates the boxviews for the shadow's gradient effect
             //This overwrites the returned array from "generateShadowBoxes" until I figure out why it's not working
@@ -79,10 +83,10 @@ namespace MentorMeet.Views
             foreach (BoxView b in boxViews)
                 matchScreen.Children.Add(b);
 
-            
+
 
             //Adds the white boxview to the UI that will hold the user info.
-            BoxView backBox = new BoxView();
+            backBox = new BoxView();
             backBox.Color = Color.White;
             backBox.CornerRadius = 23;
             backBox.HorizontalOptions = LayoutOptions.Center;
@@ -91,6 +95,36 @@ namespace MentorMeet.Views
             backBox.HeightRequest = 300;
             backBox.WidthRequest = 310;
             matchScreen.Children.Add(backBox);
+
+            profileShadow = new BoxView[10];
+            var profileShadowSize = profileCircleSize + 4;
+            for (int i = 0; i < profileShadow.Length; i++)
+            {
+                BoxView tempBox = new BoxView();
+                tempBox.CornerRadius = profileShadowSize + i;
+                tempBox.HorizontalOptions = LayoutOptions.Center;
+                tempBox.VerticalOptions = LayoutOptions.Center;
+                tempBox.WidthRequest = profileShadowSize + i;
+                tempBox.HeightRequest = profileShadowSize + i;
+                tempBox.Color = Color.FromHex("#000000");
+                tempBox.Opacity = opacity;
+                profileShadow[i] = tempBox;
+            }
+
+            foreach(BoxView b in profileShadow)
+            {
+                matchScreen.Children.Add(b);
+            }
+
+            profileCircle = new BoxView();
+            profileCircle.CornerRadius = profileCircleSize;
+            profileCircle.HorizontalOptions = LayoutOptions.Center;
+            profileCircle.VerticalOptions = LayoutOptions.Center;
+            profileCircle.WidthRequest = profileCircleSize;
+            profileCircle.HeightRequest = profileCircleSize;
+            profileCircle.Color = Color.Lavender;
+            matchScreen.Children.Add(profileCircle);
+            
             
         }
 
@@ -147,9 +181,27 @@ namespace MentorMeet.Views
             }
         }
 
-        async void OnTapped(object sender)
+        async void OnTapped(object sender, EventArgs args)
         {
-            await (sender as Grid).TranslateTo(0, 0);
+            if (tapped)
+            {
+                backBox.ScaleTo(1.2);
+                foreach(BoxView b in boxViews)
+                {
+                    b.ScaleTo(1.25);
+                }
+                tapped = false;
+            }
+            else
+            {
+                backBox.ScaleTo(1);
+                foreach (BoxView b in boxViews)
+                {
+                    b.ScaleTo(1);
+                }
+                tapped = true;
+            }
+            
         }
     }
 }

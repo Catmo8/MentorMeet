@@ -10,53 +10,37 @@
             <Grid.GestureRecognizers>
                 <SwipeGestureRecognizer Direction="Left" Swiped="OnSwiped"/>
                 <SwipeGestureRecognizer Direction="Right" Swiped="OnSwiped"/>
-                <TapGestureRecognizer Tapped="OnTapped" NumberOfTapsRequired="1"/>
+                <TapGestureRecognizer Tapped="OnTapped"/>
+            
             </Grid.GestureRecognizers>
-            <!--<BoxView x:Name="profileBox"
-                     Color="Bisque"
-                     CornerRadius="23"
-                     WidthRequest="310"
-                     HeightRequest="400"
+            <BoxView Color="Black"
+                     CornerRadius="104"
+                     WidthRequest="104"
+                     HeightRequest="104"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     Opacity="0.1"
+                     Grid.Row="0">
+            </BoxView>
+            <BoxView Color="Black"
+                     CornerRadius="106"
+                     WidthRequest="106"
+                     HeightRequest="106"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     Opacity="0.1"
+                     Grid.Row="0">
+            </BoxView>
+            <BoxView Color="Bisque"
+                     CornerRadius="100"
+                     WidthRequest="100"
+                     HeightRequest="100"
                      HorizontalOptions="Center"
                      VerticalOptions="Center"
                      Grid.Row="0">
             </BoxView>
-            <BoxView Grid.Row="0"
-                     CornerRadius="26"
-                     HorizontalOptions="Center"
-                     VerticalOptions="Center"
-                     TranslationY="0"
-                     TranslationX="0"
-                     WidthRequest="320"
-                     HeightRequest="410"
-                     Opacity="0.1" Color="#000000"/>
-            <BoxView Grid.Row="0"
-                     CornerRadius="26"
-                     HorizontalOptions="Center"
-                     VerticalOptions="Center"
-                     TranslationY="42"
-                     TranslationX="0"
-                     WidthRequest="310"
-                     HeightRequest="295"
-                     Opacity="0.1" Color="#000000"/>
-            <BoxView Grid.Row="0"
-                     CornerRadius="26"
-                     HorizontalOptions="Center"
-                     VerticalOptions="Center"
-                     TranslationY="44"
-                     TranslationX="0"
-                     WidthRequest="310"
-                     HeightRequest="295"
-                     Opacity="0.1" Color="#000000"/>
-            <BoxView Grid.Row="0"
-                     CornerRadius="26"
-                     HorizontalOptions="Center"
-                     VerticalOptions="Center"
-                     TranslationY="46"
-                     TranslationX="0"
-                     WidthRequest="310"
-                     HeightRequest="295"
-                     Opacity="0.1" Color="#000000"/>-->                   
+           
+            
         </Grid>
     </ContentPage.Content>
 </ContentPage>
