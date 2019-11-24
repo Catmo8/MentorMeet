@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using MentorMeet.Users;
 
 namespace MentorMeet.Views
 {
@@ -19,24 +20,42 @@ namespace MentorMeet.Views
         private BoxView[] profilePictureShadow;
         private BoxView profileCircle;
         private BoxView blankBox;
+        private Label name;
+        private Label details;
+        private Professor[] professors = new Professor[2];
+        private Image organizationLogo;
+        private int currentProfessor;
+
         public MatchingMenteePage()
-        { 
+        {
             InitializeComponent();
 
-            tapped = false;
-            var opacity = 0.05;
-            var profileCircleSize = 100;
+            currentProfessor = 0;
+            professors[0] = new Professor("LSU", "Konstantin Busch", "Distributed Algorithms and Data Structures, Communication Algorithms, and Algorithmic Game Theory");
+            professors[1] = new Professor("SELU", "John Burris", "Ethics, Networking, Theory of Computing, Software Engineering, Programming Languages, Cybersecurity");
+            int backgroundCardHeight = 500;
+            int profileDetailsHeight = backgroundCardHeight - 125;
+            int cardWidth = 360;
+            int profileDetailsYStart = 65;
+            int profileCircleSize = 100;
+            int profileCircleYStart = -100;
 
-            /*Function takes amount of boxviews(smoothness of the gradient), corner radius, width, height,
+            //for keeping track of the profileDetailsCard state
+            tapped = false;
+            double opacity = 0.05;
+            
+            /*generateShadowBoxes(numOfBoxes, cornerRadius, width, height, yStart, moveX)
+             * 
+             *generateShadowBoxes function takes amount of boxviews(smoothness of the gradient), corner radius, width, height,
              *starting position on the y-axis(function autocenters each box so this the starting position with respect to the center.
              *If 0, the box will be in the center of the UI) and whether or not the x axis needs to be adjusted per box like the y axis(for a perspective effect).
              *Both Y(int) and X(bool) parameters are optional and will default to 0 (the center in this case) and false respectively;
              */
-            cardShadow = generateShadowBoxes(10, 26, 312, 402, 0, true); //Generates shadow for entire profile card
-            detailCardShadow = generateShadowBoxes(10, 26, 310, 295, 40); //Generates shadow for the profile details
+            cardShadow = generateShadowBoxes(10, 26, cardWidth+2, backgroundCardHeight+2, 0, true); //Generates shadow for entire profile card
+            detailCardShadow = generateShadowBoxes(10, 26, cardWidth, profileDetailsHeight-5, profileDetailsYStart-10); //Generates shadow for the profile details
+            profilePictureShadow = generateShadowBoxes(10, profileCircleSize / 2, profileCircleSize, profileCircleSize, profileCircleYStart);
 
-            //Generates shadow for the profile picture circle
-            profilePictureShadow = new BoxView[10];
+            /*profilePictureShadow = new BoxView[10];
             var profilePictureShadowSize = profileCircleSize + 4;
             for (int i = 0; i < profilePictureShadow.Length; i++)
             {
@@ -50,52 +69,68 @@ namespace MentorMeet.Views
                 tempBox.Opacity = opacity;
                 tempBox.TranslationY = -100;
                 profilePictureShadow[i] = tempBox;
-            }
+            }*/
+            
+            
 
-            //Creates pic place holder...peach colored thing
-            BoxView picPlaceHolder = new BoxView();
-            picPlaceHolder.Color = Color.Bisque;
-            picPlaceHolder.CornerRadius = 26;
-            picPlaceHolder.WidthRequest = 310;
-            picPlaceHolder.HeightRequest = 400;
-            picPlaceHolder.HorizontalOptions = LayoutOptions.Center;
-            picPlaceHolder.VerticalOptions = LayoutOptions.Center;
+            //Creates the card behind the profileDetails card
+            BoxView backgroundCard = new BoxView();
+            backgroundCard.Color = Color.Gray;
+            backgroundCard.CornerRadius = 26;
+            backgroundCard.WidthRequest = cardWidth;
+            backgroundCard.HeightRequest = backgroundCardHeight;
+            backgroundCard.HorizontalOptions = LayoutOptions.Center;
+            backgroundCard.VerticalOptions = LayoutOptions.Center;
 
-            Image organizationLogo = new Image();
+            organizationLogo = new Image();
             organizationLogo.Source = "LSU.png";
             organizationLogo.WidthRequest = 290;
             organizationLogo.HeightRequest = 100;
             organizationLogo.HorizontalOptions = LayoutOptions.Center;
             organizationLogo.VerticalOptions = LayoutOptions.Center;
-            organizationLogo.TranslationY = organizationLogo.TranslationY - 140;
+            organizationLogo.TranslationY = profileCircleYStart - 80;
             
             
 
-            //Creates the white boxview to the UI that will hold the profile details.
+            //Creates the white boxview that will hold the profile details.
             profileDetailsBox = new BoxView();
             profileDetailsBox.Color = Color.White;
             profileDetailsBox.CornerRadius = 23;
             profileDetailsBox.HorizontalOptions = LayoutOptions.Center;
             profileDetailsBox.VerticalOptions = LayoutOptions.Center;
-            profileDetailsBox.TranslationY = 50;
-            profileDetailsBox.HeightRequest = 300;
-            profileDetailsBox.WidthRequest = 310;
-              
-            profileCircle = new BoxView();
+            profileDetailsBox.TranslationY = profileDetailsYStart;
+            profileDetailsBox.HeightRequest = profileDetailsHeight;
+            profileDetailsBox.WidthRequest = cardWidth;
             
+
+
+            profileCircle = new BoxView();
             profileCircle.HorizontalOptions = LayoutOptions.Center;
             profileCircle.VerticalOptions = LayoutOptions.Center;
             profileCircle.WidthRequest = profileCircleSize;
             profileCircle.HeightRequest = profileCircle.WidthRequest;
             profileCircle.CornerRadius = profileCircle.WidthRequest/2;
             profileCircle.Color = Color.LightGray;
-            profileCircle.TranslationY = -100;
+            profileCircle.TranslationY = profileCircleYStart;
+
+            name = new Label();
+            details = new Label();
+            name.Text = professors[0].name;
+            name.HorizontalOptions = LayoutOptions.Center;
+            name.TranslationY = profileDetailsYStart + 150;
+            name.FontSize = 30;
+
+            details.Text = professors[0].details;
+            details.HorizontalOptions = LayoutOptions.Center;
+            details.TranslationY = name.TranslationY + 40;
+            details.HorizontalTextAlignment = TextAlignment.Center;
+            details.WidthRequest = cardWidth - 5;
 
             //Adds all created BoxViews to the UI
             foreach (BoxView b in cardShadow)
                 matchScreen.Children.Add(b);
-
-            matchScreen.Children.Add(picPlaceHolder);
+            
+            matchScreen.Children.Add(backgroundCard);
             matchScreen.Children.Add(organizationLogo);
 
             foreach(BoxView b in detailCardShadow)
@@ -108,11 +143,14 @@ namespace MentorMeet.Views
 
             matchScreen.Children.Add(profileDetailsBox);
             matchScreen.Children.Add(profileCircle);
-            
-            
+
+            matchScreen.Children.Add(name);
+            matchScreen.Children.Add(details);
+
+
         }
 
-        public BoxView[] generateShadowBoxes(int numOfBoxes, int cornerRadius, int width, int height, int startY = 0, bool moveX = false)
+        public BoxView[] generateShadowBoxes(int numOfBoxes, int cornerRadius, int width, int height, int yStart = 0, bool moveX = false)
         {
             
             if(numOfBoxes > 15)
@@ -133,7 +171,7 @@ namespace MentorMeet.Views
                 tempBox.VerticalOptions = LayoutOptions.Center;
                 tempBox.WidthRequest = width;
                 tempBox.HeightRequest = height;
-                tempBox.TranslationY = i + startY;
+                tempBox.TranslationY = i + yStart;
                 if(moveX)
                     tempBox.TranslationX = (i) / 2;
 
@@ -160,7 +198,9 @@ namespace MentorMeet.Views
                 await matchScreen.RotateTo(25);
                 matchScreen.RotateTo(0);
                 matchScreen.TranslationX = 500;
+                nextProfessor();
                 await matchScreen.TranslateTo(matchScreen.TranslationX - 500, matchScreen.TranslationY - 100);
+                
             }
             else if (e.Direction == SwipeDirection.Right)
             {
@@ -169,12 +209,17 @@ namespace MentorMeet.Views
                 await matchScreen.RotateTo(-25);
                 matchScreen.RotateTo(0);
                 matchScreen.TranslationX = -500;
+                nextProfessor();
                 await matchScreen.TranslateTo(matchScreen.TranslationX + 500, matchScreen.TranslationY - 100);
+                
             }
+            
+
         }
 
         async void OnTapped(object sender, EventArgs args)
         {
+            return;
             //If the card has been tapped already, reset all views to their original states
             if (tapped)
                 resetProfileCard();
@@ -230,6 +275,36 @@ namespace MentorMeet.Views
         {
             foreach (BoxView b in box)
                 b.ScaleTo(1);
+        }
+
+        void nextProfessor()
+        {
+            while (true)
+            {
+                if (currentProfessor < 2)
+                {
+                    name.Text = professors[currentProfessor].name;
+                    details.Text = professors[currentProfessor].details;
+
+                    string caseSwitch = professors[currentProfessor].university;
+                    switch (caseSwitch)
+                    {
+                        case "LSU":
+                            organizationLogo.IsVisible = true;
+                            break;
+
+                        default:
+                            organizationLogo.IsVisible = false;
+                            break;
+                    }
+                    currentProfessor++;
+                    break;
+                }
+                else
+                {
+                    currentProfessor = 0;
+                }
+            }
         }
     }
 }
