@@ -1,13 +1,29 @@
 ﻿using System;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MentorMeet.Services;
 using MentorMeet.Views;
+using MentorMeet.Data;
 
 namespace MentorMeet
 {
     public partial class App : Application
     {
+        static MentorMeetDatabase database;
+
+        public static MentorMeetDatabase Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new  MentorMeetDatabase(
+                      Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3"));
+                }
+                return database;
+            }
+        }
 
         public App()
         {

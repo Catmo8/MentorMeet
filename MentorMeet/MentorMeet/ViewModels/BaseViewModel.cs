@@ -12,7 +12,7 @@ namespace MentorMeet.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IDataStore<User> DataStore => DependencyService.Get<IDataStore<User>>();
 
         bool isBusy = false;
         public bool IsBusy

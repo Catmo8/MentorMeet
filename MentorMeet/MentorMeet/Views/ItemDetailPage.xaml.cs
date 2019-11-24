@@ -26,7 +26,7 @@ namespace MentorMeet.Views
         {
             InitializeComponent();
 
-            var item = new Item
+            var item = new User
             {
                 Text = "Item 1",
                 Description = "This is an item description."

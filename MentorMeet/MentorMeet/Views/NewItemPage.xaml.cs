@@ -13,13 +13,13 @@ namespace MentorMeet.Views
     [DesignTimeVisible(false)]
     public partial class NewItemPage : ContentPage
     {
-        public Item Item { get; set; }
+        public User Item { get; set; }
 
         public NewItemPage()
         {
             InitializeComponent();
 
-            Item = new Item
+            Item = new User
             {
                 Text = "Item name",
                 Description = "This is an item description."

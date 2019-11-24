@@ -6,8 +6,8 @@ namespace MentorMeet.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel
     {
-        public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
+        public User Item { get; set; }
+        public ItemDetailViewModel(User item = null)
         {
             Title = item?.Text;
             Item = item;
