@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace MentorMeet.Users
 {
@@ -9,9 +10,10 @@ namespace MentorMeet.Users
         public string name;
         public string university;
         public string details;
-
+        public string picture;
         public Professor()
         {
+            picture = "";
             name = "";
             university = "";
             details = "";
@@ -19,6 +21,7 @@ namespace MentorMeet.Users
 
         public Professor(string u, string n, string d)
         {
+            picture = n.Replace(' ','_') + ".png";
             name = n;
             university = u;
             details = d;
