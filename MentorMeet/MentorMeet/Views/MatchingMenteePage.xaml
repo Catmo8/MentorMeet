@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MentorMeet.Views.MatchingMenteePage">
+    <ContentPage.Content>
+        <Grid x:Name="uniLogo">
+            <Image x:Name="organizationLogo"
+                   HeightRequest="100"
+                   WidthRequest="290"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Source="LSU.png"/>
+
+            <Grid x:Name="matchScreen">
+                <Grid.GestureRecognizers>
+                    <SwipeGestureRecognizer Direction="Left" Swiped="OnSwiped"/>
+                    <SwipeGestureRecognizer Direction="Right" Swiped="OnSwiped"/>
+                    <TapGestureRecognizer Tapped="OnTapped"/>
+
+                </Grid.GestureRecognizers>
+            
+                <!--<BoxView Color="Black"
+                         CornerRadius="104"
+                         WidthRequest="104"
+                         HeightRequest="104"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"
+                         Opacity="0.1"
+                         Grid.Row="0">
+                </BoxView>
+                <BoxView Color="Black"
+                         CornerRadius="106"
+                         WidthRequest="106"
+                         HeightRequest="106"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"
+                         Opacity="0.1"
+                         Grid.Row="0">
+                </BoxView>
+                <BoxView Color="Bisque"
+                         CornerRadius="100"
+                         WidthRequest="100"
+                         HeightRequest="100"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"
+                         Grid.Row="0">
+                </BoxView>-->
+          
+            
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

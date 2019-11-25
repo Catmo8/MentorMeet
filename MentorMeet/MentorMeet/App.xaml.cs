@@ -15,6 +15,10 @@ namespace MentorMeet
 
             DependencyService.Register<MockDataStore>();
             MainPage = new MainPage();
+            MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#FF640064"));
+            MainPage.SetValue(NavigationPage.BackgroundColorProperty, Color.FromHex("#FF640064"));
+            MainPage.SetValue(NavigationPage.BarTextColorProperty, Color.Gold);
+            
         }
 
         protected override void OnStart()

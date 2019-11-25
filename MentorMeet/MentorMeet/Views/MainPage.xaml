@@ -5,17 +5,16 @@
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             mc:Ignorable="d"
             xmlns:views="clr-namespace:MentorMeet.Views"
-            x:Class="MentorMeet.Views.MainPage">
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            android:TabbedPage.IsSwipePagingEnabled="False"
+            x:Class="MentorMeet.Views.MainPage"
+            SelectedTabColor="MediumPurple">
 
     <TabbedPage.Children>
-        <NavigationPage Title="Browse">
-            <NavigationPage.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="iOS" Value="tab_feed.png"/>
-                </OnPlatform>
-            </NavigationPage.Icon>
+        <NavigationPage Title="Matchmaking" IconImageSource="ic_person.png">
             <x:Arguments>
-                <views:ItemsPage />
+                <views:MatchingMenteePage />
             </x:Arguments>
         </NavigationPage>
         

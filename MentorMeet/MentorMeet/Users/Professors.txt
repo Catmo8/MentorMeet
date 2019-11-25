@@ -1,0 +1,2 @@
+﻿LSU; Gerald Baumgartner; Design and Implementation of Domain-Specific Languages, Compiler Optimization, Desktop Grids, Object-Oriented Languages, Software Engineering Tools, and Embedded Systems Programming Tools
+LSU; Konstantin Busch; Distributed Algorithms and Data Structures, Communication Algorithms, and Algorithmic Game Theory
