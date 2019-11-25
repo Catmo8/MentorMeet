@@ -123,7 +123,20 @@
     <BundleResource Include="Resources\xamarin_logo%402x.png" />
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    <AndroidResource Include="Resources\LSU.png" />
+    <ImageAsset Include="Assets.xcassets\Anas_Mahmoud.png.imageset\Anas_Mahmoud.png" />
+    <ImageAsset Include="Assets.xcassets\Anas_Mahmoud.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\check.png.imageset\check.png" />
+    <ImageAsset Include="Assets.xcassets\check.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_person.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_person.png.imageset\ic_person.png" />
+    <ImageAsset Include="Assets.xcassets\Konstantin_Busch.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Konstantin_Busch.png.imageset\Konstantin_Busch.png" />
+    <ImageAsset Include="Assets.xcassets\LSU.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LSU.png.imageset\LSU.png" />
+    <ImageAsset Include="Assets.xcassets\splashscreen.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\splashscreen.png.imageset\splashscreen.png" />
+    <ImageAsset Include="Assets.xcassets\William_Duncan.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\William_Duncan.png.imageset\William_Duncan.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -151,19 +164,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Anas_Mahmoud.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\check.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\ic_ac_unit.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Konstantin_Busch.png">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -175,12 +176,12 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\splash_background.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\splashscreen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\William_Duncan.png" />
+    <Folder Include="Assets.xcassets\Anas_Mahmoud.png.imageset\" />
+    <Folder Include="Assets.xcassets\check.png.imageset\" />
+    <Folder Include="Assets.xcassets\ic_person.png.imageset\" />
+    <Folder Include="Assets.xcassets\Konstantin_Busch.png.imageset\" />
+    <Folder Include="Assets.xcassets\LSU.png.imageset\" />
+    <Folder Include="Assets.xcassets\splashscreen.png.imageset\" />
+    <Folder Include="Assets.xcassets\William_Duncan.png.imageset\" />
   </ItemGroup>
 </Project>
