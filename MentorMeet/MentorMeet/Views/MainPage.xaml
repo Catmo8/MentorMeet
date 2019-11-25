@@ -9,7 +9,8 @@
             android:TabbedPage.ToolbarPlacement="Bottom"
             android:TabbedPage.IsSwipePagingEnabled="False"
             x:Class="MentorMeet.Views.MainPage"
-            SelectedTabColor="MediumPurple">
+            SelectedTabColor="#FFFFE100"
+            UnselectedTabColor="MediumPurple">
 
     <TabbedPage.Children>
         <NavigationPage Title="Matchmaking" IconImageSource="ic_person.png">
