@@ -91,6 +91,10 @@
                             BorderWidth="4"
                             BorderRadius="15"/>
 
+                        <Button
+                            Text="Database"
+                            Clicked="databaseClicked"/>
+
                     </StackLayout>
 
                 </Grid>

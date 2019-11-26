@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="MentorMeet.Views.SignupPage"
-             Title="SignUp">
+             Title="SignUp"
+             BackgroundColor="Black">
     <ContentPage.Content>
         <!--
         <StackLayout>
@@ -13,12 +14,13 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>-->
-        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Black">
-            <Entry Placeholder="First Name" x:Name="First"/>
-            <Entry Placeholder="Last Name" x:Name="Last"/>
-            <Entry Placeholder="Email" x:Name="Email"/>
+        <StackLayout HorizontalOptions="Center"
+                   VerticalOptions="Center">
+            <Entry Placeholder="First Name" x:Name="First" PlaceholderColor="Gray" TextColor="White" />
+            <Entry Placeholder="Last Name" x:Name="Last" PlaceholderColor="Gray" TextColor="White"/>
+            <Entry Placeholder="Email" x:Name="Email" PlaceholderColor="Gray" TextColor="White"/>
             <Picker x:Name="Major"
-                    Title="Major">
+                    Title="Major" TitleColor="Gray" TextColor="White" FontSize="Large">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Biological Engineering</x:String>
@@ -35,9 +37,19 @@
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
-            <Entry Placeholder="Password" IsPassword="true" x:Name="Pass"/>
-            <Entry Placeholder="Confirm Password" IsPassword="true" x:Name="Confirm"/>
-            <Button Text="Register" CornerRadius="3" x:Name="Register" Clicked="RegisterClicked" ></Button>
+            <Entry Placeholder="Password" IsPassword="true" x:Name="Pass" PlaceholderColor="Gray" TextColor="White"/>
+            <Entry Placeholder="Confirm Password" IsPassword="true" x:Name="Confirm" PlaceholderColor="Gray" TextColor="White"/>
+            <Button
+                            Text="Register"
+                            HorizontalOptions="CenterAndExpand"
+                            TextColor="White"
+                            BackgroundColor="Blue"
+                            WidthRequest="100"
+                            x:Name="Register"
+                            Clicked="RegisterClicked"
+                            BorderColor="Blue"
+                            BorderWidth="4"
+                            BorderRadius="15"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

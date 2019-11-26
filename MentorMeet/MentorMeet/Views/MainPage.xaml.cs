@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using Xamarin.Forms;
-
+using SQLite;
+using System.IO;
 using Xamarin.Forms.Xaml;
 
 namespace MentorMeet.Views
@@ -12,10 +13,11 @@ namespace MentorMeet.Views
     [DesignTimeVisible(false)]
     public partial class MainPage : TabbedPage
     {
+        
         public MainPage()
         {
+
             InitializeComponent();
-            
         }
     }
 

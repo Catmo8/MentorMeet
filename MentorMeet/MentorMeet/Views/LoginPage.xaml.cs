@@ -35,8 +35,8 @@ namespace MentorMeet.Views
             if (!item.checkIfLSUid())
             {
                 textToDisplay = "Enter LSUID (with @lsu.edu) to login";
+                
             }
-
             await Navigation.PushModalAsync(new MainPage());
             
         }
@@ -45,6 +45,12 @@ namespace MentorMeet.Views
         async void SignUpClicked(object sender, System.EventArgs e)
         {
             await Navigation.PushModalAsync(new SignupPage());
+
+        }
+
+        async void databaseClicked(object sender, System.EventArgs e)
+        {
+
         }
     }
 }
