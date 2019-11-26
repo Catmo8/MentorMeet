@@ -34,9 +34,10 @@ namespace MentorMeet.Views
             using (SQLiteConnection conn = new SQLiteConnection(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3")))
             {
                 conn.CreateTable<User>();
-                //int rowsAdded = conn.Insert
+                int rowsAdded = conn.Insert(account);
             }
 
+            Navigation.PopModalAsync();
         }
     }
 }
