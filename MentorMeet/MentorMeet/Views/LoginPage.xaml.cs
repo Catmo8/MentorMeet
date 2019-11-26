@@ -32,20 +32,9 @@ namespace MentorMeet.Views
             string textToDisplay = "";
 
             //check for valid LSU id
-            if (item.checkIfLSUid())
-            {
-                textToDisplay = "Good to login with LSU id";
-            }
-            else
+            if (!item.checkIfLSUid())
             {
                 textToDisplay = "Enter LSUID (with @lsu.edu) to login";
-
-            }
-
-            //check if password contains asterisks
-            if (!item.containsAstreisks())
-            {
-                textToDisplay += " and password does not contain asterisks";
             }
 
             await Navigation.PushModalAsync(new MainPage());
@@ -56,6 +45,7 @@ namespace MentorMeet.Views
         async void SignUpClicked(object sender, System.EventArgs e)
         {
             DisplayAlert("Message", "Sign Up Page Pop Up", "OK");
+            await Navigation.PushModalAsync(new );
             
         }
     }
