@@ -16,5 +16,10 @@ namespace MentorMeet.Views
         {
             InitializeComponent();
         }
+
+        private void Register_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

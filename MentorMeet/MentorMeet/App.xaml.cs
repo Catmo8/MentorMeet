@@ -2,7 +2,6 @@
 using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using MentorMeet.Services;
 using MentorMeet.Views;
 using MentorMeet.Data;
 
@@ -29,7 +28,7 @@ namespace MentorMeet
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            //DependencyService.Register<MockDataStore>();
             MainPage = new MainPage();
         }
 
