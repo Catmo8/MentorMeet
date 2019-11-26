@@ -44,9 +44,7 @@ namespace MentorMeet.Views
         //response after sign up button clicked
         async void SignUpClicked(object sender, System.EventArgs e)
         {
-            DisplayAlert("Message", "Sign Up Page Pop Up", "OK");
-            await Navigation.PushModalAsync(new );
-            
+            await Navigation.PushModalAsync(new SignupPage());
         }
     }
 }
