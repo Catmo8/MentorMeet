@@ -24,12 +24,18 @@ namespace MentorMeet.Droid
             LoadApplication(new App());
 
             Window.SetStatusBarColor(Android.Graphics.Color.Rgb(100, 0 , 100));
+            Window.AddFlags(WindowManagerFlags.Fullscreen);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        public void showStatusBar()
+        {
+            Window.ClearFlags(WindowManagerFlags.Fullscreen);
         }
     }
 }

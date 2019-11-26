@@ -123,20 +123,48 @@
     <BundleResource Include="Resources\xamarin_logo%402x.png" />
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    <ImageAsset Include="Assets.xcassets\Anas_Mahmoud.png.imageset\Anas_Mahmoud.png" />
-    <ImageAsset Include="Assets.xcassets\Anas_Mahmoud.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\check.png.imageset\check.png" />
-    <ImageAsset Include="Assets.xcassets\check.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\ic_person.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\ic_person.png.imageset\ic_person.png" />
-    <ImageAsset Include="Assets.xcassets\Konstantin_Busch.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Konstantin_Busch.png.imageset\Konstantin_Busch.png" />
-    <ImageAsset Include="Assets.xcassets\LSU.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\LSU.png.imageset\LSU.png" />
-    <ImageAsset Include="Assets.xcassets\splashscreen.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\splashscreen.png.imageset\splashscreen.png" />
-    <ImageAsset Include="Assets.xcassets\William_Duncan.png.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\William_Duncan.png.imageset\William_Duncan.png" />
+    <ImageAsset Include="Assets.xcassets\Anas_Mahmoud.png.imageset\Anas_Mahmoud.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Anas_Mahmoud.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\check.png.imageset\check.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\check.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_person.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_person.png.imageset\ic_person.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Konstantin_Busch.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Konstantin_Busch.png.imageset\Konstantin_Busch.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LSU.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LSU.png.imageset\LSU.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\splashscreen.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\splashscreen.png.imageset\splashscreen.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\William_Duncan.png.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\William_Duncan.png.imageset\William_Duncan.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

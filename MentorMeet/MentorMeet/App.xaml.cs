@@ -14,10 +14,10 @@ namespace MentorMeet
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new MainPage();
-            MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#FF640064"));
+            MainPage = new LoginPage();
+            /*MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#FF640064"));
             MainPage.SetValue(NavigationPage.BackgroundColorProperty, Color.FromHex("#FF640064"));
-            MainPage.SetValue(NavigationPage.BarTextColorProperty, Color.Gold);
+            MainPage.SetValue(NavigationPage.BarTextColorProperty, Color.Gold);*/
             
         }
 
