@@ -23,8 +23,8 @@ namespace MentorMeet.Views
         private ScrollView scrollView;
         private Label name;
         private Label details;
-        private Professor[] professors = new Professor[2];
-        private Image profilePic;
+        private Professor[] professors = new Professor[3];
+        private Image profilePic, checkMark;
         private int currentProfessor;
 
         public MatchingMenteePage()
@@ -34,8 +34,9 @@ namespace MentorMeet.Views
 
             currentProfessor = 0;
             professors[0] = new Professor("LSU", "Konstantin Busch", "Distributed Algorithms and Data Structures, Communication Algorithms, and Algorithmic Game Theory");
-            professors[1] = new Professor("LSU", "Konstantin Busch", "Ethics, Networking, Theory of Computing, Software Engineering, Programming Languages, Cybersecurity");
-            
+            professors[1] = new Professor("LSU", "Anas Mahmoud", "Software Engineering, Requirements Engineering, Program Comprehension, and Code Analysis");
+            professors[2] = new Professor("LSU", "William Duncan", "Knowledge Discovery and Data Mining, Bioinformatics, Stochastic Process and Markov Chains");
+
             int backgroundCardHeight = 500;
             int profileDetailsHeight = backgroundCardHeight - 100;
             int cardWidth = 360;
@@ -55,7 +56,7 @@ namespace MentorMeet.Views
              *Both Y(int) and X(bool) parameters are optional and will default to 0 (the center in this case) and false respectively;
              */
             //cardShadow = generateShadowBoxes(10, 26, cardWidth+2, backgroundCardHeight+2, 0, true); //Generates shadow for entire profile card
-            detailCardShadow = generateShadowBoxes(10, 26, cardWidth+2, profileDetailsHeight+2, profileDetailsYStart, true); //Generates shadow for the profile details
+            detailCardShadow = generateShadowBoxes(20, 26, cardWidth+2, profileDetailsHeight+2, profileDetailsYStart, true); //Generates shadow for the profile details
             profilePictureShadow = generateShadowBoxes(10, profileCircleSize / 2, profileCircleSize, profileCircleSize, profileCircleYStart, true);
             
 
@@ -74,7 +75,7 @@ namespace MentorMeet.Views
             organizationLogo.HeightRequest = 100;
             organizationLogo.HorizontalOptions = LayoutOptions.Center;
             organizationLogo.VerticalOptions = LayoutOptions.Center;*/
-            organizationLogo.TranslationY = profileCircleYStart - 70 ;
+            organizationLogo.TranslationY = profileCircleYStart - 100 ;
             
             
 
@@ -104,26 +105,25 @@ namespace MentorMeet.Views
             details = new Label();
             name.Text = professors[0].name;
             name.HorizontalOptions = LayoutOptions.Center;
-            name.TranslationY = profileDetailsYStart + 150;
+            name.TranslationY = profileDetailsYStart + 200;
             name.FontSize = 30;
 
             details.Text = professors[0].details;
             details.HorizontalTextAlignment = TextAlignment.Center;
-            details.FontSize = 50;
+            details.FontSize = 16;
 
             scrollView = new ScrollView();
             scrollView.HorizontalOptions = LayoutOptions.Center;
             scrollView.VerticalOptions = LayoutOptions.Center;
-            scrollView.TranslationY = name.TranslationY;
-            scrollView.WidthRequest = cardWidth - 5;
-            scrollView.HeightRequest = scrollView.WidthRequest;
+            scrollView.TranslationY = name.TranslationY - 150;
+            scrollView.WidthRequest = cardWidth - 75;
+            scrollView.HeightRequest = profileDetailsHeight - 100;
             scrollView.Content = details;
 
             profilePic = new Image();
 
             nextProfessor();
 
-            profilePic.Source = professors[currentProfessor].picture;
             profilePic.HorizontalOptions = LayoutOptions.Center;
             profilePic.VerticalOptions = LayoutOptions.Center;
 
@@ -165,6 +165,15 @@ namespace MentorMeet.Views
             //matchScreen.Children.Add(profilePic);
             matchScreen.Children.Add(frame);
 
+            checkMark = new Image();
+            checkMark.Source = "check.png";
+            checkMark.HeightRequest = 100;
+            checkMark.WidthRequest = 100;
+            checkMark.HorizontalOptions = LayoutOptions.Center;
+            checkMark.VerticalOptions = LayoutOptions.Center;
+            checkMark.Scale = .1;
+            checkMark.Opacity = 0;
+            uniLogo.Children.Add(checkMark);
 
         }
 
@@ -225,10 +234,20 @@ namespace MentorMeet.Views
                 matchScreen.RotateTo(25);
                 await matchScreen.TranslateTo(matchScreen.TranslationX + 500, matchScreen.TranslationY + 100, 125);
                 await matchScreen.RotateTo(-25);
+                nextProfessor();
+                checkMark.FadeTo(1);
+                checkMark.ScaleTo(1);
+                await checkMark.RotateTo(360);
+
+                await Task.Delay(750);
+                checkMark.ScaleTo(.1);
+                checkMark.RotateTo(0);
+
+                await checkMark.FadeTo(0);
                 matchScreen.RotateTo(0);
                 matchScreen.TranslationX = -500;
-                nextProfessor();
                 await matchScreen.TranslateTo(matchScreen.TranslationX + 500, matchScreen.TranslationY - 100);
+                
                 
             }
             
@@ -299,7 +318,7 @@ namespace MentorMeet.Views
         {
             while (true)
             {
-                if (currentProfessor < 2)
+                if (currentProfessor < professors.Length)
                 {
                     name.Text = professors[currentProfessor].name;
                     details.Text = professors[currentProfessor].details;

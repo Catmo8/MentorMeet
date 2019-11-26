@@ -15,6 +15,7 @@ namespace MentorMeet.Views
         public MainPage()
         {
             InitializeComponent();
+            
         }
     }
 
