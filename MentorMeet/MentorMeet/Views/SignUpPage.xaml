@@ -35,8 +35,8 @@
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
-            <Entry Placeholder="Password" IsPassword="true" x:Name="Pass"/>
-            <Entry Placeholder="Confirm Password" IsPassword="true" x:Name="Confirm"/>
+            <Entry Placeholder="Password" IsPassword="true" x:Name="Password"/>
+            <Entry Placeholder="Confirm Password" IsPassword="true" x:Name="ConfirmPass"/>
             <Button Text="Register" CornerRadius="3" x:Name="Register" Clicked ="Register_Clicked"></Button>
         </StackLayout>
     </ContentPage.Content>
