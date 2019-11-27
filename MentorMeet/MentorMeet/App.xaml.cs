@@ -1,9 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using MentorMeet.Services;
 using MentorMeet.Views;
-using SQLitePCL;
 
 namespace MentorMeet
 {
@@ -14,7 +12,6 @@ namespace MentorMeet
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new LoginPage();
             MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#FF640064"));
             MainPage.SetValue(NavigationPage.BackgroundColorProperty, Color.FromHex("#FF640064"));

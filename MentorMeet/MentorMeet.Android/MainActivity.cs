@@ -23,7 +23,7 @@ namespace MentorMeet.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
 
-            Window.SetStatusBarColor(Android.Graphics.Color.Rgb(100, 0 , 100));
+            Window.SetStatusBarColor(Android.Graphics.Color.Rgb(70, 29, 124));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
