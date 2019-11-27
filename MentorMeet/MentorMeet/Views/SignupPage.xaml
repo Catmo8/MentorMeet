@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="MentorMeet.Views.SignupPage"
              Title="SignUp"
-             BackgroundColor="Black">
+             BackgroundColor="LightGray">
     <ContentPage.Content>
         <!--
         <StackLayout>
@@ -20,7 +20,7 @@
             <Entry Placeholder="Last Name" x:Name="Last" PlaceholderColor="Gray" TextColor="White"/>
             <Entry Placeholder="Email" x:Name="Email" PlaceholderColor="Gray" TextColor="White"/>
             <Picker x:Name="Major"
-                    Title="Major" TitleColor="Gray" TextColor="White" FontSize="Large">
+                    Title="Major" TitleColor="Gray" TextColor="White">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Biological Engineering</x:String>
@@ -40,16 +40,14 @@
             <Entry Placeholder="Password" IsPassword="true" x:Name="Pass" PlaceholderColor="Gray" TextColor="White"/>
             <Entry Placeholder="Confirm Password" IsPassword="true" x:Name="Confirm" PlaceholderColor="Gray" TextColor="White"/>
             <Button
-                            Text="Register"
-                            HorizontalOptions="CenterAndExpand"
-                            TextColor="White"
-                            BackgroundColor="Blue"
-                            WidthRequest="100"
-                            x:Name="Register"
-                            Clicked="RegisterClicked"
-                            BorderColor="Blue"
-                            BorderWidth="4"
-                            BorderRadius="15"/>
+                Text="Register"
+                HorizontalOptions="CenterAndExpand"
+                TextColor="White"
+                BackgroundColor="#FF461D7C"
+                WidthRequest="100"
+                x:Name="Register"
+                Clicked="RegisterClicked"
+                CornerRadius="15"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
