@@ -12,7 +12,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ImageCell Text="{Binding name}" Detail="{Binding details}" ImageSource="{Binding picture}" TextColor="Black" DetailColor="SlateGray"/>
-                        <!--deatils should be changed to most recent message-->
+                        <!--detils should be changed to most recent message-->
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
