@@ -130,7 +130,7 @@ namespace MentorMeet.Views
             Frame frame = new Frame();
             frame.HorizontalOptions = LayoutOptions.Center;
             frame.VerticalOptions = LayoutOptions.Center;
-            frame.WidthRequest = profileCircleSize - 5;
+            frame.WidthRequest = profileCircleSize - 6;
             frame.HeightRequest = frame.WidthRequest;
             frame.CornerRadius = (float)frame.WidthRequest / 2;
             frame.Padding = 0;
@@ -140,14 +140,14 @@ namespace MentorMeet.Views
             frame.BackgroundColor = Color.Transparent;
 
             
-            uniLogo.BackgroundColor = Color.Purple;
+            uniLogo.BackgroundColor = Color.FromHex("#FF64289A");
             //Adds all created BoxViews to the UI
             /*foreach (BoxView b in cardShadow)
                 matchScreen.Children.Add(b);*/
-            
+
             //matchScreen.Children.Add(backgroundCard);
 
-            foreach(BoxView b in detailCardShadow)
+            foreach (BoxView b in detailCardShadow)
                 matchScreen.Children.Add(b);
 
             

@@ -13,8 +13,8 @@ namespace MentorMeet
             InitializeComponent();
 
             MainPage = new LoginPage();
-            MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#FF640064"));
-            MainPage.SetValue(NavigationPage.BackgroundColorProperty, Color.FromHex("#FF640064"));
+            MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#FF461D7C"));
+            MainPage.SetValue(NavigationPage.BackgroundColorProperty, Color.FromHex("#FF461D7C"));
             MainPage.SetValue(NavigationPage.BarTextColorProperty, Color.Gold);
             
         }
