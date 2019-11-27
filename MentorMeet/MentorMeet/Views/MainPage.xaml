@@ -14,6 +14,11 @@
             BarBackgroundColor="#FF461D7C">
 
     <TabbedPage.Children>
+        <NavigationPage Title="Profile">
+            <x:Arguments>
+                <views:ProfilePage />
+            </x:Arguments>
+        </NavigationPage>
         <NavigationPage Title="Matchmaking" IconImageSource="ic_person.png">
             <x:Arguments>
                 <views:MatchingMenteePage />

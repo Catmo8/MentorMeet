@@ -16,8 +16,14 @@ namespace MentorMeet.Views
         
         public MainPage()
         {
-
             InitializeComponent();
+
+
+            // This sets the tabbed page so the matching is page is on startup
+            var pages = Children.GetEnumerator();
+            pages.MoveNext(); // First page
+            pages.MoveNext(); // Second page
+            CurrentPage = pages.Current;
         }
     }
 
