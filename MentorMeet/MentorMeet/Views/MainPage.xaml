@@ -19,8 +19,10 @@
                 <views:MatchingMenteePage />
             </x:Arguments>
         </NavigationPage>
-        
-        
+        <NavigationPage Title="Messaging">
+            <x:Arguments>
+                <views:MessagingPage />
+            </x:Arguments>
+        </NavigationPage>
     </TabbedPage.Children>
-    
 </TabbedPage>
