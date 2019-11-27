@@ -19,17 +19,11 @@
                 <views:MatchingMenteePage />
             </x:Arguments>
         </NavigationPage>
-        
-        <NavigationPage Title="About">
-            <NavigationPage.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="iOS" Value="tab_about.png"/>
-                </OnPlatform>
-            </NavigationPage.Icon>
+
+        <NavigationPage Title="Messaging">
             <x:Arguments>
-                <views:AboutPage />
+                <views:MessagingPage />
             </x:Arguments>
         </NavigationPage>
     </TabbedPage.Children>
-    
 </TabbedPage>

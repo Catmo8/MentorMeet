@@ -7,10 +7,11 @@ namespace MentorMeet.Users
 {
     public class Professor
     {
-        public string name;
-        public string university;
-        public string details;
-        public string picture;
+        public string name { get; set; }
+        public string university { get; set; }
+        public string details { get; set; }
+        public string picture { get; set; }
+
         public Professor()
         {
             picture = "";
