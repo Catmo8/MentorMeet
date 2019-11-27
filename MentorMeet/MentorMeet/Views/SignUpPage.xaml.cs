@@ -21,20 +21,41 @@ namespace MentorMeet.Views
 
         async private void Register_Clicked(object sender, EventArgs e)
         {
-            User account = new User()
+            if ((string.IsNullOrWhiteSpace(First.Text)) || (string.IsNullOrWhiteSpace(Last.Text)) ||
+                (string.IsNullOrWhiteSpace(Email.Text)) || (string.IsNullOrWhiteSpace(Password.Text)) || 
+                (string.IsNullOrWhiteSpace(ConfirmPass.Text)) ||
+                (string.IsNullOrEmpty(First.Text)) || (string.IsNullOrEmpty(Last.Text)) ||
+                (string.IsNullOrEmpty(Email.Text)) || (string.IsNullOrEmpty(Password.Text)) ||
+                (string.IsNullOrEmpty(ConfirmPass.Text)))
             {
-                email = Email.Text,
-                password = Password.Text,
-                confirmPass = ConfirmPass.Text,
-                first = First.Text,
-                last = Last.Text,
-                
-             };
+                await DisplayAlert("Error", "Complete all fields", "OK");
+            }
+            else if (!string.Equals(Password.Text, ConfirmPass.Text))
+            {
+                warningLabel.Text = "Enter Same Password";
+                Password.Text = string.Empty;
+                ConfirmPass.Text = string.Empty;
+                warningLabel.TextColor = Color.IndianRed;
+                warningLabel.IsVisible = true;
+            }
+            else
+            {
+                User account = new User()
+                {
+                    email = Email.Text,
+                    password = Password.Text,
+                    confirmPass = ConfirmPass.Text,
+                    first = First.Text,
+                    last = Last.Text,
+                    //major = Major.ToString.Text,
 
-            using (SQLiteConnection conn = new SQLiteConnection(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3")))
-            {
-                conn.CreateTable<User>();
-                int rowsAdded = conn.Insert(account);
+                };
+
+                using (SQLiteConnection conn = new SQLiteConnection(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3")))
+                {
+                    conn.CreateTable<User>();
+                    int rowsAdded = conn.Insert(account);
+                }
             }
 
             Navigation.PopModalAsync();
