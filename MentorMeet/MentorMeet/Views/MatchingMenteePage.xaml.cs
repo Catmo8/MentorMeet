@@ -24,7 +24,7 @@ namespace MentorMeet.Views
         private Label name;
         private Label details;
         private Professor[] professors = new Professor[3];
-        private Image profilePic, checkMark;
+        private Image profilePic, checkMark, declineX;
         private int currentProfessor;
 
         public MatchingMenteePage()
@@ -121,9 +121,9 @@ namespace MentorMeet.Views
             scrollView.Content = details;
 
             profilePic = new Image();
-
             nextProfessor();
 
+            
             profilePic.HorizontalOptions = LayoutOptions.Center;
             profilePic.VerticalOptions = LayoutOptions.Center;
 
@@ -173,7 +173,18 @@ namespace MentorMeet.Views
             checkMark.VerticalOptions = LayoutOptions.Center;
             checkMark.Scale = .1;
             checkMark.Opacity = 0;
+
+            declineX = new Image();
+            declineX.Source = "x.png";
+            declineX.HorizontalOptions = LayoutOptions.Center;
+            declineX.VerticalOptions = LayoutOptions.Center;
+            declineX.WidthRequest = 100;
+            declineX.HeightRequest = 100;
+            declineX.Scale = checkMark.Scale;
+            declineX.Opacity = checkMark.Opacity;
+
             uniLogo.Children.Add(checkMark);
+            uniLogo.Children.Add(declineX);
 
         }
 
@@ -223,9 +234,21 @@ namespace MentorMeet.Views
                 matchScreen.RotateTo(-25);
                 await matchScreen.TranslateTo(matchScreen.TranslationX - 500, matchScreen.TranslationY + 100, 125);
                 await matchScreen.RotateTo(25);
+                nextProfessor();
+
+                declineX.FadeTo(1,100);
+                declineX.ScaleTo(1,100);
+                await declineX.RotateTo(360,100);
+
+                await Task.Delay(500);
+
+                declineX.FadeTo(0);
+                await declineX.ScaleTo(.1);
+                declineX.RotateTo(0);
+
                 matchScreen.RotateTo(0);
                 matchScreen.TranslationX = 500;
-                nextProfessor();
+
                 await matchScreen.TranslateTo(matchScreen.TranslationX - 500, matchScreen.TranslationY - 100);
                 
             }
@@ -235,15 +258,17 @@ namespace MentorMeet.Views
                 await matchScreen.TranslateTo(matchScreen.TranslationX + 500, matchScreen.TranslationY + 100, 125);
                 await matchScreen.RotateTo(-25);
                 nextProfessor();
+
                 checkMark.FadeTo(1);
                 checkMark.ScaleTo(1);
                 await checkMark.RotateTo(360);
 
                 await Task.Delay(750);
+
                 checkMark.ScaleTo(.1);
                 checkMark.RotateTo(0);
-
                 await checkMark.FadeTo(0);
+                
                 matchScreen.RotateTo(0);
                 matchScreen.TranslationX = -500;
                 await matchScreen.TranslateTo(matchScreen.TranslationX + 500, matchScreen.TranslationY - 100);
