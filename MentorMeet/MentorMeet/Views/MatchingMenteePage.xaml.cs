@@ -15,15 +15,13 @@ namespace MentorMeet.Views
     {
         private bool tapped; //Keeps track of the tapped state to control which animations (expand/shrink) get executed on the profile card
         private BoxView profileDetailsBox;
-        private BoxView[] cardShadow;
         private BoxView[] detailCardShadow;
         private BoxView[] profilePictureShadow;
         private BoxView profileCircle;
-        private BoxView blankBox;
         private ScrollView scrollView;
         private Label name;
         private Label details;
-        private Professor[] professors = new Professor[3];
+        private List<Professor> professors = new List<Professor>();
         private Image profilePic, checkMark, declineX;
         private int currentProfessor;
 
@@ -33,9 +31,9 @@ namespace MentorMeet.Views
             NavigationPage.SetHasNavigationBar(this, false);
 
             currentProfessor = 0;
-            professors[0] = new Professor("LSU", "Konstantin Busch", "Distributed Algorithms and Data Structures, Communication Algorithms, and Algorithmic Game Theory");
-            professors[1] = new Professor("LSU", "Anas Mahmoud", "Software Engineering, Requirements Engineering, Program Comprehension, and Code Analysis");
-            professors[2] = new Professor("LSU", "William Duncan", "Knowledge Discovery and Data Mining, Bioinformatics, Stochastic Process and Markov Chains");
+            professors.Add(new Professor("LSU", "Konstantin Busch", "Distributed Algorithms and Data Structures, Communication Algorithms, and Algorithmic Game Theory"));
+            professors.Add(new Professor("LSU", "Anas Mahmoud", "Software Engineering, Requirements Engineering, Program Comprehension, and Code Analysis"));
+            professors.Add(new Professor("LSU", "William Duncan", "Knowledge Discovery and Data Mining, Bioinformatics, Stochastic Process and Markov Chains"));
 
             int backgroundCardHeight = 500;
             int profileDetailsHeight = backgroundCardHeight - 100;
@@ -343,7 +341,7 @@ namespace MentorMeet.Views
         {
             while (true)
             {
-                if (currentProfessor < professors.Length)
+                if (currentProfessor < professors.Count)
                 {
                     name.Text = professors[currentProfessor].name;
                     details.Text = professors[currentProfessor].details;
