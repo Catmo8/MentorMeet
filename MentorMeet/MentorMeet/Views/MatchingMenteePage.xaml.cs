@@ -7,6 +7,7 @@ using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MentorMeet.Users;
+using MentorMeet.Models;
 
 namespace MentorMeet.Views
 {
@@ -29,7 +30,7 @@ namespace MentorMeet.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-
+            UIHelper helper = new UIHelper();
             currentProfessor = 0;
             professors.Add(new Professor("LSU", "Konstantin Busch", "Distributed Algorithms and Data Structures, Communication Algorithms, and Algorithmic Game Theory"));
             professors.Add(new Professor("LSU", "Anas Mahmoud", "Software Engineering, Requirements Engineering, Program Comprehension, and Code Analysis"));
@@ -46,16 +47,16 @@ namespace MentorMeet.Views
             tapped = false;
             double opacity = 0.05;
             
-            /*generateShadowBoxes(numOfBoxes, cornerRadius, width, height, yStart, moveX)
+            /*GenerateShadowBoxes(numOfBoxes, cornerRadius, width, height, yStart, moveX)
              * 
-             *generateShadowBoxes function takes amount of boxviews(smoothness of the gradient), corner radius, width, height,
+             *GenerateShadowBoxes function takes amount of boxviews(smoothness of the gradient), corner radius, width, height,
              *starting position on the y-axis(function autocenters each box so this the starting position with respect to the center.
              *If 0, the box will be in the center of the UI) and whether or not the x axis needs to be adjusted per box like the y axis(for a perspective effect).
              *Both Y(int) and X(bool) parameters are optional and will default to 0 (the center in this case) and false respectively;
              */
-            //cardShadow = generateShadowBoxes(10, 26, cardWidth+2, backgroundCardHeight+2, 0, true); //Generates shadow for entire profile card
-            detailCardShadow = generateShadowBoxes(20, 26, cardWidth+2, profileDetailsHeight+2, profileDetailsYStart, true); //Generates shadow for the profile details
-            profilePictureShadow = generateShadowBoxes(10, profileCircleSize / 2, profileCircleSize, profileCircleSize, profileCircleYStart, true);
+            //cardShadow = GenerateShadowBoxes(10, 26, cardWidth+2, backgroundCardHeight+2, 0, true); //Generates shadow for entire profile card
+            detailCardShadow = helper.GenerateShadowBoxes(20, 26, cardWidth+2, profileDetailsHeight+2, profileDetailsYStart, true); //Generates shadow for the profile details
+            profilePictureShadow = helper.GenerateShadowBoxes(10, profileCircleSize / 2, profileCircleSize, profileCircleSize, profileCircleYStart, true);
             
 
             //Creates the card behind the profileDetails card
@@ -184,40 +185,6 @@ namespace MentorMeet.Views
             uniLogo.Children.Add(checkMark);
             uniLogo.Children.Add(declineX);
 
-        }
-
-        public BoxView[] generateShadowBoxes(int numOfBoxes, int cornerRadius, int width, int height, int yStart = 0, bool moveX = false)
-        {
-            
-            if(numOfBoxes > 15)
-            {
-                numOfBoxes = 15;
-            }
-
-            BoxView[] boxViews = new BoxView[numOfBoxes];
-
-            double opacity = 1/(double)numOfBoxes; //to gradually and equally increase the opacity as the cardShadow overlap.
-            //Generates the cardShadow for the shadow's gradient effect
-
-            for (int i = 0; i < numOfBoxes; i++)
-            {
-                BoxView tempBox = new BoxView();
-                tempBox.CornerRadius = cornerRadius;
-                tempBox.HorizontalOptions = LayoutOptions.Center;
-                tempBox.VerticalOptions = LayoutOptions.Center;
-                tempBox.WidthRequest = width;
-                tempBox.HeightRequest = height;
-                tempBox.TranslationY = i + yStart;
-                if(moveX)
-                    tempBox.TranslationX = (i) / 2;
-
-                tempBox.Color = Color.FromHex("#000000");
-
-                tempBox.Opacity = opacity;
-                boxViews[i] = tempBox;
-            }
-            
-            return boxViews;
         }
 
         //Handles the swipe gestures and their respective animations.

@@ -4,12 +4,30 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="MentorMeet.Views.ProfilePage">
+             x:Class="MentorMeet.Views.ProfilePage"
+             BackgroundColor="#FF64289A">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid x:Name="profilePageGrid">
+
+            <Image x:Name="editProfile"
+                       Source="ic_pencil_plus"
+                       HorizontalOptions="End"
+                       VerticalOptions="Start"
+                       TranslationX="-20"
+                       TranslationY="30"
+                       WidthRequest="35">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="EditProfileClicked"/>
+                </Image.GestureRecognizers>
+            </Image>
+
+            <!--<BoxView BackgroundColor="White"
+                     CornerRadius="25"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     WidthRequest="500"
+                     HeightRequest="900"
+                     TranslationY="100"/> -->
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
