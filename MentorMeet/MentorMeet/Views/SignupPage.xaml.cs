@@ -42,12 +42,11 @@ namespace MentorMeet.Views
             {
                 User account = new User()
                 {
-                    email = Email.Text,
-                    password = Password.Text,
-                    confirmPass = ConfirmPass.Text,
-                    first = First.Text,
-                    last = Last.Text,
-                    //major = Major.ToString.Text,
+                    First = First.Text,
+                    Last = Last.Text,
+                    Email = Email.Text,
+                    Major = Major.SelectedItem.ToString(),
+                    Password = Password.Text,
 
                 };
 
@@ -56,9 +55,9 @@ namespace MentorMeet.Views
                     conn.CreateTable<User>();
                     int rowsAdded = conn.Insert(account);
                 }
+                Navigation.PopModalAsync();
             }
 
-            Navigation.PopModalAsync();
         }
     }
 }
