@@ -44,7 +44,7 @@ namespace MentorMeet.Views
         //response after sign up button clicked
         async void SignUpClicked(object sender, System.EventArgs e)
         {
-            await Navigation.PushModalAsync(new SignupPage());
+            await Navigation.PushModalAsync(new SignUpPage());
 
         }
 
