@@ -165,12 +165,6 @@
     <ImageAsset Include="Assets.xcassets\William_Duncan.png.imageset\William_Duncan.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <BundleResource Include="Resources\comment.png" />
-    <BundleResource Include="Resources\dot.png" />
-    <BundleResource Include="Resources\thanos.png" />
-    <BundleResource Include="Resources\thumbnail.jpg" />
-    <BundleResource Include="Resources\share.png" />
-    <BundleResource Include="Resources\like.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
