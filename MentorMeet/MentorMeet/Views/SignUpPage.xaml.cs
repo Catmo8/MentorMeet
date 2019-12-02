@@ -21,10 +21,10 @@ namespace MentorMeet.Views
 
         async private void Register_Clicked(object sender, EventArgs e)
         {
-            string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3");
-            var conn = new SQLiteConnection(dbPath);
-            var data = conn.Table<User>();
-            var data1 = data.Where(x => x.Email == Email.Text).FirstOrDefault();
+            //string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3");
+            //var conn = new SQLiteConnection(dbPath);
+            //var data = conn.Table<User>();
+            //var data1 = data.Where(x => x.Email == Email.Text).FirstOrDefault();
             String eduSubstring = "lsu.edu";
             if ((string.IsNullOrWhiteSpace(First.Text)) || (string.IsNullOrWhiteSpace(Last.Text)) ||
                 (string.IsNullOrWhiteSpace(Email.Text)) || (string.IsNullOrWhiteSpace(Password.Text)) ||
@@ -63,7 +63,7 @@ namespace MentorMeet.Views
 
                 };
 
-                using (conn)
+                using (SQLiteConnection conn = new SQLiteConnection(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3")))
                 {
                     conn.CreateTable<User>();
                     int rowsAdded = conn.Insert(account);
