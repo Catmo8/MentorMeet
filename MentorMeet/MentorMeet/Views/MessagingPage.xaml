@@ -3,19 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:MentorMeet"
              mc:Ignorable="d"
              x:Class="MentorMeet.Views.MessagingPage">
     <ContentPage.Content>
         <StackLayout BackgroundColor="LightGray">
             <SearchBar Placeholder="Search..." TextChanged="OnTextChanged" />
-            <ListView x:Name="MessageList" SeparatorColor="LightSlateGray">
+            <local:BetterListView x:Name="MessagerList" SeparatorColor="LightSlateGray">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ImageCell Text="{Binding name}" Detail="{Binding details}" ImageSource="{Binding picture}" TextColor="Black" DetailColor="SlateGray"/>
-                        <!--detils should be changed to most recent message-->
+                        <!--details should be changed to most recent message-->
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </local:BetterListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
