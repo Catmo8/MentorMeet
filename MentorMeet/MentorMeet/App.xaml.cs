@@ -28,8 +28,10 @@ namespace MentorMeet
         {
             InitializeComponent();
 
-            //DependencyService.Register<MockDataStore>();
-            MainPage = new MainPage();
+            MainPage = new LoginPage();
+            MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#FF461D7C"));
+            MainPage.SetValue(NavigationPage.BackgroundColorProperty, Color.FromHex("#FF461D7C"));
+            MainPage.SetValue(NavigationPage.BarTextColorProperty, Color.Gold);
         }
 
         protected override void OnStart()

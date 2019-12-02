@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MentorMeet.Views.SignupPage"
+             Title="SignUp"
+             BackgroundColor="LightGray">
+    <ContentPage.Content>
+        <!--
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>-->
+        <StackLayout HorizontalOptions="Center"
+                   VerticalOptions="Center">
+            <Entry Placeholder="First Name" x:Name="First" PlaceholderColor="Gray" TextColor="White" />
+            <Entry Placeholder="Last Name" x:Name="Last" PlaceholderColor="Gray" TextColor="White"/>
+            <Entry Placeholder="Email" x:Name="Email" PlaceholderColor="Gray" TextColor="White"/>
+            <Picker x:Name="Major"
+                    Title="Major" TitleColor="Gray" TextColor="White">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Biological Engineering</x:String>
+                        <x:String>Chemical Engineering</x:String>
+                        <x:String>Civil Engineering</x:String>
+                        <x:String>Computer Engineering</x:String>
+                        <x:String>Computer Science</x:String>
+                        <x:String>Construction Management</x:String>
+                        <x:String>Electrical Engineering</x:String>
+                        <x:String>Environmental Engineering</x:String>
+                        <x:String>Industrial Engineering</x:String>
+                        <x:String>Mechanical Engineering</x:String>
+                        <x:String>Petroleum Engineering</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <Entry Placeholder="Password" IsPassword="true" x:Name="Pass" PlaceholderColor="Gray" TextColor="White"/>
+            <Entry Placeholder="Confirm Password" IsPassword="true" x:Name="Confirm" PlaceholderColor="Gray" TextColor="White"/>
+            <Button
+                Text="Register"
+                HorizontalOptions="CenterAndExpand"
+                TextColor="White"
+                BackgroundColor="#FF461D7C"
+                WidthRequest="100"
+                x:Name="Register"
+                Clicked="RegisterClicked"
+                CornerRadius="15"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
