@@ -13,7 +13,7 @@ namespace MentorMeet.Views
     public partial class ProfilePage : ContentPage
     {
         BoxView[] shadow, pictureShadow;
-        BoxView detailsCard, detailsCardOverlay;
+        BoxView detailsCard, detailsCardOverlay, line;
         ScrollView scrollView;
         StackLayout stackLayout;
         Image profileImage;
@@ -82,10 +82,9 @@ namespace MentorMeet.Views
 
             detailsLabel = new Label { Text = "Testing this piece"};
             emailLabel = new Label { Text = "E-mail: illendyou@lsu.edu" };
-            stackLayout = new StackLayout
-            {
-                Children = { detailsLabel }
-            };
+
+
+            stackLayout = new StackLayout();
             scrollView = new ScrollView
             {
                 HorizontalOptions = LayoutOptions.Center,
@@ -110,6 +109,15 @@ namespace MentorMeet.Views
                 IsClippedToBounds = true,
             };
 
+            line = new BoxView
+            {
+                HeightRequest = 3,
+                WidthRequest = scrollView.WidthRequest,
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Start,
+                Color = Color.DarkGray,
+            };
+
             shadow = helper.GenerateShadowBoxes(10, 20, detailsCard.WidthRequest, detailsCard.HeightRequest, detailsCard.TranslationY - 7);
             pictureShadow = helper.GenerateShadowBoxes(true, 10, profilePictureFrame.CornerRadius, profilePictureFrame.WidthRequest - 1, profilePictureFrame.WidthRequest, profilePictureFrame.TranslationY - 1);
             detailsCardOverlay = helper.GenerateShadowBoxes(1, 20, detailsCard.WidthRequest, detailsCard.HeightRequest, detailsCard.TranslationY)[0];
@@ -129,7 +137,9 @@ namespace MentorMeet.Views
             profilePageGrid.Children.Add(profilePictureFrame);
             profilePageGrid.Children.Add(profilePictureOverlay);
 
-            
+            stackLayout.Children.Add(emailLabel);
+            stackLayout.Children.Add(line);
+            stackLayout.Children.Add(detailsLabel);
         }
 
         //Changes view from profile to edit profile

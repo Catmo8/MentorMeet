@@ -39,7 +39,7 @@ namespace MentorMeet.Views
             int backgroundCardHeight = 500;
             int profileDetailsHeight = backgroundCardHeight - 100;
             int cardWidth = 360;
-            int profileDetailsYStart = 50;
+            int profileDetailsYStart = -50;
             int profileCircleSize = 100;
             int profileCircleYStart = profileDetailsYStart - 200;
 
@@ -57,7 +57,6 @@ namespace MentorMeet.Views
             //cardShadow = GenerateShadowBoxes(10, 26, cardWidth+2, backgroundCardHeight+2, 0, true); //Generates shadow for entire profile card
             detailCardShadow = helper.GenerateShadowBoxes(20, 26, cardWidth+2, profileDetailsHeight+2, profileDetailsYStart, true); //Generates shadow for the profile details
             profilePictureShadow = helper.GenerateShadowBoxes(10, profileCircleSize / 2, profileCircleSize, profileCircleSize, profileCircleYStart, true);
-            
 
             //Creates the card behind the profileDetails card
             BoxView backgroundCard = new BoxView();
@@ -74,10 +73,7 @@ namespace MentorMeet.Views
             organizationLogo.HeightRequest = 100;
             organizationLogo.HorizontalOptions = LayoutOptions.Center;
             organizationLogo.VerticalOptions = LayoutOptions.Center;*/
-            organizationLogo.TranslationY = profileCircleYStart - 100 ;
             
-            
-
             //Creates the white boxview that will hold the profile details.
             profileDetailsBox = new BoxView();
             profileDetailsBox.Color = Color.White;
@@ -88,8 +84,6 @@ namespace MentorMeet.Views
             profileDetailsBox.HeightRequest = profileDetailsHeight;
             profileDetailsBox.WidthRequest = cardWidth;
             
-
-
             profileCircle = new BoxView();
             profileCircle.HorizontalOptions = LayoutOptions.Center;
             profileCircle.VerticalOptions = LayoutOptions.Center;
@@ -98,7 +92,6 @@ namespace MentorMeet.Views
             profileCircle.CornerRadius = profileCircle.WidthRequest/2;
             profileCircle.Color = Color.Gold;
             profileCircle.TranslationY = profileCircleYStart;
-
 
             name = new Label();
             details = new Label();
@@ -138,7 +131,6 @@ namespace MentorMeet.Views
             frame.TranslationY = profileCircle.TranslationY;
             frame.BackgroundColor = Color.Transparent;
 
-            
             uniLogo.BackgroundColor = Color.FromHex("#FF64289A");
             //Adds all created BoxViews to the UI
             /*foreach (BoxView b in cardShadow)

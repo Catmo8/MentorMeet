@@ -8,10 +8,11 @@
     <ContentPage.Content>
         <Grid x:Name="uniLogo">
             <Image x:Name="organizationLogo"
-                   HeightRequest="100"
-                   WidthRequest="290"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
+                   WidthRequest="100"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"
+                   TranslationX="20"
+                   TranslationY="30"
                    Source="LSU.png"/>
 
             <Grid x:Name="matchScreen">
