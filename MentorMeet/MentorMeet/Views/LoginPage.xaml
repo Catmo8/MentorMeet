@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MentorMeet.Views.LoginPage">
+    <ContentPage.Content>
+        <Grid>
+            <Image Source="background1.png" Grid.Row="0" Aspect="AspectFill"></Image>
+            <Grid Margin="20,0,20,0" VerticalOptions="CenterAndExpand" Grid.Row="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75" />
+                    <RowDefinition Height="0" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="25" />
+                </Grid.RowDefinitions>
+
+                <Frame CornerRadius="15" 
+                        Grid.Row="0" 
+                        Opacity=".8"
+                        Padding="4"
+                        VerticalOptions="Center">
+                    <Entry
+                        Placeholder="E-mail (e.g. user@lsu.edu)"
+                        FontSize="15"
+                        x:Name="UsernameEntry"
+                        BackgroundColor="Transparent"
+                        />
+                </Frame>
+                    
+                <Frame CornerRadius="15" 
+                        Grid.Row="2" 
+                        Opacity=".8"
+                        Padding="4"
+                       VerticalOptions="Center">
+                    <Entry
+                            Placeholder="Password"
+                            IsPassword="True"
+                            FontSize="15"
+                            x:Name="PasswordEntry"/>
+                </Frame>
+
+                <Frame Grid.Row="4" 
+                        HorizontalOptions="Center"
+                        Padding="0"
+                        CornerRadius="15">
+                    <Button
+                        Text="login"
+                        FontSize="20"
+                        HorizontalOptions="CenterAndExpand"
+                        TextColor="White"
+                        BackgroundColor="#FF461D7C"
+                        WidthRequest="100"
+                        x:Name="loginButton"
+                        Clicked="LoginClicked"
+                        CornerRadius="15"/>
+                </Frame>
+
+                <Frame Grid.Row="6"
+                        Padding="0"
+                        HorizontalOptions="Center"
+                        CornerRadius="15">
+                    <Button
+                        Text="Sign Up"
+                        FontSize="20"
+                        HorizontalOptions="CenterAndExpand"
+                        TextColor="White"
+                        BackgroundColor="#FF461D7C"
+                        WidthRequest="140"
+                        x:Name="signUpButton"
+                        Clicked="SignUpClicked"
+                        CornerRadius="15"/>
+                </Frame>
+
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
