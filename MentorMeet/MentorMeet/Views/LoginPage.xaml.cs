@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MentorMeet.Users;
+using MentorMeet.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using SQLite;
+using System.IO;
 
 namespace MentorMeet.Views
 {
@@ -20,32 +22,54 @@ namespace MentorMeet.Views
         //response after login button clicked
         async void LoginClicked(object sender, System.EventArgs e)
         {
-            var item = new User(UsernameEntry.Text, PasswordEntry.Text);
-
-            //check for empty imputs
-            if (item.checkIfEmpty())
-            {
-                DisplayAlert("Message", "Username or password is empty", "OK");
-                return;
-            }
-
-            string textToDisplay = "";
-
+            /*
             //check for valid LSU id
             if (!item.checkIfLSUid())
             {
                 textToDisplay = "Enter LSUID (with @lsu.edu) to login";
                 
             }
-            await Navigation.PushModalAsync(new MainPage());
-            
+            */
+            /*
+             using (SQLiteConnection conn = new SQLiteConnection(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3")))
+            {
+                var account = conn.Table<User>().ToList();
+            }
+            if (!account.Contains(UsernameEntry.Text))
+            {
+                DisplayAlert("Message", "Username o)
+            }
+            */
+            try
+            {
+                string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3");
+                var conn = new SQLiteConnection(dbPath);
+                var data = conn.Table<User>();
+                var data1 = data.Where(x => x.Email == UsernameEntry.Text && x.Password == PasswordEntry.Text).FirstOrDefault();
+                if((string.IsNullOrWhiteSpace(UsernameEntry.Text)) || (string.IsNullOrWhiteSpace(PasswordEntry.Text)) ||
+                    (string.IsNullOrEmpty(UsernameEntry.Text)) || (string.IsNullOrEmpty(PasswordEntry.Text)))
+                {
+                    await DisplayAlert("Error", "Username or Password is empty", "OK");
+                }
+                else if (data1 == null)
+                {
+                    await DisplayAlert("Error", "Username or Password invalid", "OK");
+                }
+                else
+                {
+                    await Navigation.PushModalAsync(new MainPage());
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.ToString(), "OK");
+            }
         }
 
         //response after sign up button clicked
         async void SignUpClicked(object sender, System.EventArgs e)
         {
             await Navigation.PushModalAsync(new SignUpPage());
-
         }
 
         async void databaseClicked(object sender, System.EventArgs e)

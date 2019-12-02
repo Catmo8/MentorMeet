@@ -7,11 +7,10 @@ namespace MentorMeet.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public string first { get; set; }
-        public string last { get; set; }
-        public string email { get; set; }
-        public string major { get; set; }
-        public string password { get; set; }
-        public string confirmPass { get; set; }
+        public string First { get; set; }
+        public string Last { get; set; }
+        public string Email { get; set; }
+        public string Major { get; set; }
+        public string Password { get; set; }
     }
 }  

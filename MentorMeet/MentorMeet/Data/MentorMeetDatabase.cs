@@ -22,11 +22,6 @@ namespace MentorMeet.Data
             return database.Table<User>().ToListAsync();
         }
 
-        public Task<List<User>> GetItemsNotDoneAsync()
-        {
-            return database.QueryAsync<User>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
-        }
-
         public Task<User> GetItemAsync(int id)
         {
             return database.Table<User>().Where(i => i.Id == id).FirstOrDefaultAsync();
@@ -44,9 +39,9 @@ namespace MentorMeet.Data
             }
         }
 
-        public Task<int> DeleteItemAsync(User item)
-        {
-            return database.DeleteAsync(item);
-        }
+        //public Task<int> DeleteItemAsync(User item)
+        //{
+        //    return database.DeleteAsync(item);
+        //}
     }
 }

@@ -21,14 +21,23 @@ namespace MentorMeet.Views
 
         async private void Register_Clicked(object sender, EventArgs e)
         {
+            string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3");
+            var conn = new SQLiteConnection(dbPath);
+            var data = conn.Table<User>();
+            var data1 = data.Where(x => x.Email == Email.Text).FirstOrDefault();
+            String eduSubstring = "lsu.edu";
             if ((string.IsNullOrWhiteSpace(First.Text)) || (string.IsNullOrWhiteSpace(Last.Text)) ||
-                (string.IsNullOrWhiteSpace(Email.Text)) || (string.IsNullOrWhiteSpace(Password.Text)) || 
+                (string.IsNullOrWhiteSpace(Email.Text)) || (string.IsNullOrWhiteSpace(Password.Text)) ||
                 (string.IsNullOrWhiteSpace(ConfirmPass.Text)) ||
                 (string.IsNullOrEmpty(First.Text)) || (string.IsNullOrEmpty(Last.Text)) ||
                 (string.IsNullOrEmpty(Email.Text)) || (string.IsNullOrEmpty(Password.Text)) ||
                 (string.IsNullOrEmpty(ConfirmPass.Text)))
             {
                 await DisplayAlert("Error", "Complete all fields", "OK");
+            }
+            else if (!Email.Text.Contains(eduSubstring))
+            {
+                await DisplayAlert("Error", "Invalid lsu.edu email", "OK");
             }
             else if (!string.Equals(Password.Text, ConfirmPass.Text))
             {
@@ -38,27 +47,30 @@ namespace MentorMeet.Views
                 warningLabel.TextColor = Color.IndianRed;
                 warningLabel.IsVisible = true;
             }
+            /*else if (data1 == null)
+            {
+                await DisplayAlert("Error", "Account already exists", "OK"); 
+            }*/
             else
             {
                 User account = new User()
                 {
-                    email = Email.Text,
-                    password = Password.Text,
-                    confirmPass = ConfirmPass.Text,
-                    first = First.Text,
-                    last = Last.Text,
-                    //major = Major.ToString.Text,
+                    First = First.Text,
+                    Last = Last.Text,
+                    Email = Email.Text,
+                    Major = Major.SelectedItem.ToString(),
+                    Password = Password.Text,
 
                 };
 
-                using (SQLiteConnection conn = new SQLiteConnection(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3")))
+                using (conn)
                 {
                     conn.CreateTable<User>();
                     int rowsAdded = conn.Insert(account);
                 }
+                Navigation.PopModalAsync();
             }
 
-            Navigation.PopModalAsync();
         }
     }
 }
