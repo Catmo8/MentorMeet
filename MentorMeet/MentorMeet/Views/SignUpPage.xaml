@@ -5,8 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="MentorMeet.Views.SignUpPage"
-             Title="SignUp"
-             BackgroundColor="LightGray">
+             Title="SignUp">
     <ContentPage.Content>
         <!--
         <StackLayout>
@@ -14,7 +13,7 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>-->
-        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" >
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
             <Entry Placeholder="First Name" x:Name="First"/>
             <Entry Placeholder="Last Name" x:Name="Last"/>
             <Entry Placeholder="Email" x:Name="Email"/>
