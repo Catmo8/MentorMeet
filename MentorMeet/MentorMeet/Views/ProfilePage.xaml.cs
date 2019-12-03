@@ -13,12 +13,12 @@ namespace MentorMeet.Views
     public partial class ProfilePage : ContentPage
     {
         BoxView[] shadow, pictureShadow;
-        BoxView detailsCard, detailsCardOverlay, line;
+        BoxView detailsCard, detailsCardOverlay, horizontalLine, verticalLine, horizontalLine2;
         ScrollView scrollView;
-        StackLayout stackLayout;
-        Image profileImage;
-        Frame profilePictureFrame, detailsEditorFrame, profilePictureOverlay;
-        Label detailsLabel, editPictureLabel, emailLabel;
+        StackLayout profileStack, editStack;
+        Image profileImage, lsu;
+        Frame profilePictureFrame, detailsEditorFrame, profilePictureOverlay, circle;
+        Label detailsLabel, editPictureLabel, emailLabel, email, name;
         Editor detailsEditor;
         bool editProfileToggle;
 
@@ -44,6 +44,14 @@ namespace MentorMeet.Views
             };
 
             profileImage = new Image{ Source = "Anas_Mahmoud" };
+            lsu = new Image {
+                Source = "eye",
+                WidthRequest = 100,
+                HorizontalOptions = LayoutOptions.End,
+                TranslationX = -30,
+                TranslationY = -110
+
+            };
 
             profilePictureFrame = new Frame
             {
@@ -80,18 +88,47 @@ namespace MentorMeet.Views
                 Opacity = 0
             };
 
-            detailsLabel = new Label { Text = "Testing this piece"};
-            emailLabel = new Label { Text = "E-mail: illendyou@lsu.edu" };
+            name = new Label
+            {
+                Text = "Anas Mahmoud",
+                HorizontalOptions = LayoutOptions.Center,
+                FontSize = 26,
+                TranslationY = 10,
+            };
+
+            detailsLabel = new Label
+            {
+                Text = "Testing this piece",
+                TranslationY = 100,
+            };
+            emailLabel = new Label
+            {
+                Text = "E-mail",
+                TranslationY = 25,
+                TranslationX = 60,
+                FontSize = 16,
+                TextDecorations = TextDecorations.Underline,
+                FontAttributes = FontAttributes.Bold
+            };
+
+            email = new Label
+            {
+                Text = "somthing@lsu.edu",
+                TranslationY = emailLabel.TranslationY,
+                TranslationX = emailLabel.TranslationX -30
+            };
 
 
-            stackLayout = new StackLayout();
+            profileStack = new StackLayout();
+            editStack = new StackLayout();
+
             scrollView = new ScrollView
             {
                 HorizontalOptions = LayoutOptions.Center,
                 VerticalOptions = LayoutOptions.Start,
                 WidthRequest = detailsCard.WidthRequest - 110,
-                HeightRequest = detailsCard.HeightRequest - 300,
-                Content = stackLayout,
+                HeightRequest = detailsCard.HeightRequest - 500,
+                Content = profileStack,
                 TranslationY = detailsCard.TranslationY + 75
             };
 
@@ -109,13 +146,51 @@ namespace MentorMeet.Views
                 IsClippedToBounds = true,
             };
 
-            line = new BoxView
+            horizontalLine = new BoxView
             {
-                HeightRequest = 3,
+                HeightRequest = 1,
+                CornerRadius = 1,
                 WidthRequest = scrollView.WidthRequest,
                 HorizontalOptions = LayoutOptions.Center,
                 VerticalOptions = LayoutOptions.Start,
-                Color = Color.DarkGray,
+                Color = Color.Gold,
+                TranslationY = -110
+            };
+
+            horizontalLine2 = new BoxView
+            {
+                HeightRequest = 1,
+                CornerRadius = 1,
+                WidthRequest = scrollView.WidthRequest,
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Start,
+                TranslationY = -300,
+                Color = Color.Gold,
+            };
+
+            verticalLine = new BoxView
+            {
+                HeightRequest = 70,
+                CornerRadius = 1,
+                WidthRequest = 1,
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Start,
+                Color = Color.Gold,
+                TranslationY = -35
+            };
+
+            circle = new Frame
+            {
+                HeightRequest = 20,
+                CornerRadius = 10,
+                WidthRequest = 20,
+                BackgroundColor = Color.White,
+                BorderColor = Color.Gold,
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Start,
+                TranslationY = horizontalLine.TranslationY - 15,
+                Padding = 0,
+                HasShadow = false
             };
 
             shadow = helper.GenerateShadowBoxes(10, 20, detailsCard.WidthRequest, detailsCard.HeightRequest, detailsCard.TranslationY - 7);
@@ -137,9 +212,16 @@ namespace MentorMeet.Views
             profilePageGrid.Children.Add(profilePictureFrame);
             profilePageGrid.Children.Add(profilePictureOverlay);
 
-            stackLayout.Children.Add(emailLabel);
-            stackLayout.Children.Add(line);
-            stackLayout.Children.Add(detailsLabel);
+            profileStack.Children.Add(name);
+            profileStack.Children.Add(emailLabel);
+            profileStack.Children.Add(email);
+            profileStack.Children.Add(verticalLine);
+            profileStack.Children.Add(lsu);
+            profileStack.Children.Add(horizontalLine);
+            profileStack.Children.Add(circle);
+            profileStack.Children.Add(detailsLabel);
+            profileStack.Children.Add(horizontalLine2);
+
         }
 
         //Changes view from profile to edit profile
@@ -149,7 +231,7 @@ namespace MentorMeet.Views
             if (editProfileToggle)
             {
                 detailsLabel.FormattedText = detailsEditor.Text;
-                scrollView.Content = stackLayout;
+                scrollView.Content = profileStack;
                 profilePictureFrame.TranslateTo(profilePictureFrame.TranslationX, profilePictureFrame.TranslationY + moveAmount);
                 profilePictureFrame.ScaleTo(1);
 
