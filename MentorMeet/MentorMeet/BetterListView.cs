@@ -39,3 +39,5 @@ namespace MentorMeet
         }
     }
 }
+
+// https://github.com/davidhauck/ItemClickBinding/blob/master/ItemClickBinding/ItemClickBinding/BetterListView.cs

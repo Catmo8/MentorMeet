@@ -9,14 +9,14 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="LightGray">
             <SearchBar Placeholder="Search..." TextChanged="OnTextChanged" />
-            <local:BetterListView x:Name="MessagerList" SeparatorColor="LightSlateGray">
+            <ListView x:Name="MessagerList" SeparatorColor="LightSlateGray" ItemSelected="MessagerList_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ImageCell Text="{Binding name}" Detail="{Binding details}" ImageSource="{Binding picture}" TextColor="Black" DetailColor="SlateGray"/>
                         <!--details should be changed to most recent message-->
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </local:BetterListView>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
