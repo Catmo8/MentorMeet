@@ -38,6 +38,9 @@
             <Entry Placeholder="Password" IsPassword="true" x:Name="Password"/>
             <Entry Placeholder="Confirm Password" IsPassword="true" x:Name="ConfirmPass"/>
             <Label x:Name="warningLabel" Text="" IsVisible="False" TextColor="Blue" FontSize="15" BackgroundColor="Transparent" FlexLayout.AlignSelf="End"/>
+            <Label Text="Professor?"/>
+            <CheckBox x:Name="ProfessorCheck"/>
+
             <Button Text="Register" CornerRadius="3" x:Name="Register" Clicked ="Register_Clicked"></Button>
         </StackLayout>
     </ContentPage.Content>

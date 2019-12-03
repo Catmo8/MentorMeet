@@ -60,9 +60,8 @@ namespace MentorMeet.Views
                     Email = Email.Text,
                     Major = Major.SelectedItem.ToString(),
                     Password = Password.Text,
-
+                    IsProfessor = ProfessorCheck.IsChecked,
                 };
-
                 using (SQLiteConnection conn = new SQLiteConnection(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3")))
                 {
                     conn.CreateTable<User>();
