@@ -8,13 +8,14 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MentorMeet.Users;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
 
 namespace MentorMeet.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MessagingPage : ContentPage
     {
-        public List<Professor> people = new List<Professor>()
+        public ObservableCollection<Professor> people = new ObservableCollection<Professor>()
         {
             new Professor("LSU", "Konstantin Busch", "Distributed Algorithms and Data Structures, Communication Algorithms, and Algorithmic Game Theory"),
             new Professor("LSU", "Anas Mahmoud", "Software Engineering, Requirements Engineering, Program Comprehension, and Code Analysis"),
@@ -49,12 +50,27 @@ namespace MentorMeet.Views
             }
         }
 
-        //public ICommand ItemClickCommand
-        //{
-        //    get
-        //    {
 
-         //   }
-        //}
+        // No longer used as I moved from BetterListView to the normal one
+        public ICommand ItemClickCommand
+        {
+            get
+            {
+                return new Command(async (item) =>
+                {
+                    await Navigation.PushModalAsync(new NavigationPage(new MessagingIndividual((Professor)item)));
+                });
+            }
+        }
+
+        private async void MessagerList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new MessagingIndividual((Professor)e.SelectedItem)));
+
+            //await Task.Run(() =>
+            //{
+            //    MessagerList.SelectedItem = null;
+            //});
+        }
     }
 }

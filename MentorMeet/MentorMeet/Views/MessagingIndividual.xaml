@@ -8,11 +8,11 @@
              x:Class="MentorMeet.Views.MessagingIndividual">
     
     <NavigationPage.TitleView>
-        <StackLayout Orientation="Horizontal" VerticalOptions="Fill">
-            <Image Source="William_Duncan" VerticalOptions="FillAndExpand" HorizontalOptions="Start" Aspect="AspectFit" HeightRequest="60"/>
+        <StackLayout  Orientation="Horizontal" VerticalOptions="Fill">
+            <Image x:Name="IndividualTitleImage" Source="{Binding name}" VerticalOptions="FillAndExpand" HorizontalOptions="Start" Aspect="AspectFit" HeightRequest="60"/>
             <StackLayout Orientation="Vertical" Spacing="0">
-                <Label Text="William Duncan" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="25" MaxLines="1" LineBreakMode="CharacterWrap" TextColor="#2D2D2D"/>
-                <Label Text="Computer Science Ph.D, Mathematics and some other stuff to put right here" HorizontalOptions="StartAndExpand" FontSize="15" MaxLines="1" LineBreakMode="CharacterWrap"/>
+                <Label x:Name="IndividualTitleName" Text="{Binding name}" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="25" MaxLines="1" LineBreakMode="CharacterWrap" TextColor="#2D2D2D"/>
+                <Label x:Name="IndividualTitleDetails" Text="{Binding details}" HorizontalOptions="StartAndExpand" FontSize="15" MaxLines="1" LineBreakMode="CharacterWrap"/>
             </StackLayout>
             <ImageButton Source="closeX3" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" BackgroundColor="White" Clicked="ImageButton_Clicked"/>
         </StackLayout>
