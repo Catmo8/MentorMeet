@@ -8,7 +8,7 @@
              x:Class="MentorMeet.Views.MessagingPage">
     <ContentPage.Content>
         <StackLayout BackgroundColor="LightGray">
-            <SearchBar Placeholder="Search..." TextChanged="OnTextChanged" />
+            <SearchBar Placeholder="Search" TextChanged="OnTextChanged" />
             <ListView x:Name="MessagerList" SeparatorColor="LightSlateGray" ItemSelected="MessagerList_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>

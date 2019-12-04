@@ -14,17 +14,17 @@
             BarBackgroundColor="#FF461D7C">
 
     <TabbedPage.Children>
-        <NavigationPage Title="Profile">
+        <NavigationPage Title="Profile" IconImageSource="grayProfile.png">
             <x:Arguments>
                 <views:ProfilePage />
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage Title="Matchmaking" IconImageSource="ic_person.png">
+        <NavigationPage Title="Connections" IconImageSource="grayHandshake.png">
             <x:Arguments>
                 <views:MatchingMenteePage />
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage Title="Messaging">
+        <NavigationPage Title="Messaging" IconImageSource="grayMessage.png">
             <x:Arguments>
                 <views:MessagingPage />
             </x:Arguments>

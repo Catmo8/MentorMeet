@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MentorMeet.Models;
+using MentorMeet.Users;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SQLite;
@@ -57,7 +58,14 @@ namespace MentorMeet.Views
                 }
                 else
                 {
+                    CurrentUser.First = data1.First;
+                    CurrentUser.Last = data1.Last;
+                    CurrentUser.Email = data1.Email;
+                    CurrentUser.Major = data1.Major;
+                    CurrentUser.IsProfessor = data1.IsProfessor;
+                    
                     await Navigation.PushModalAsync(new MainPage());
+                    
                 }
             }
             catch (Exception ex)
@@ -72,9 +80,9 @@ namespace MentorMeet.Views
             await Navigation.PushModalAsync(new SignUpPage());
         }
 
-        async void databaseClicked(object sender, System.EventArgs e)
+        private void UsernameEntry_Completed(object sender, EventArgs e)
         {
-
+            PasswordEntry.Focus();
         }
     }
 }
