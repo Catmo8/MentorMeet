@@ -7,5 +7,8 @@ namespace MentorMeet.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        public User SwipingUser { get; set; }
+        public User SwipedOnUser { get; set; }
+        public bool SwipedRight { get; set; }
     }
 }
