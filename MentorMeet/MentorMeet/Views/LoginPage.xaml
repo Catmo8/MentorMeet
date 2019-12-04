@@ -29,6 +29,7 @@
                         FontSize="15"
                         x:Name="UsernameEntry"
                         BackgroundColor="Transparent"
+                        Completed="UsernameEntry_Completed"
                         />
                 </Frame>
                     
@@ -41,7 +42,8 @@
                             Placeholder="Password"
                             IsPassword="True"
                             FontSize="15"
-                            x:Name="PasswordEntry"/>
+                            x:Name="PasswordEntry"
+                            Completed="LoginClicked"/>
                 </Frame>
 
                 <Frame Grid.Row="4" 

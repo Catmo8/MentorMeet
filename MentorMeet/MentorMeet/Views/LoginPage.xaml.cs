@@ -72,9 +72,9 @@ namespace MentorMeet.Views
             await Navigation.PushModalAsync(new SignUpPage());
         }
 
-        async void databaseClicked(object sender, System.EventArgs e)
+        private void UsernameEntry_Completed(object sender, EventArgs e)
         {
-
+            PasswordEntry.Focus();
         }
     }
 }
