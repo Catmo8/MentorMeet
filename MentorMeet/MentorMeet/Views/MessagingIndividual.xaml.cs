@@ -37,6 +37,14 @@ namespace MentorMeet.Views
             IndividualTitleName.Text = individual.name;
             IndividualTitleDetails.Text = individual.details;
 
+
+            // Get database entries where 
+            // Search (fromUser == currentUser AND toUser == currentlySelectedUser) OR (fromUser == currentlySeleectedUser AND toUser == currentUser)  SORT BY time DESC
+
+            // for each entry
+                // Append to messages
+                
+
             messages = new ObservableCollection<Message>()
             {
             new Message(individual.name, new DateTime(2019, 12, 1, 16, 12, 15), "Hello, World!", false),

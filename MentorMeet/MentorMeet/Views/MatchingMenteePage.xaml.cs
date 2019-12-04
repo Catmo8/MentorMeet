@@ -35,6 +35,17 @@ namespace MentorMeet.Views
             professors.Add(new Professor("LSU", "Anas Mahmoud", "Software Engineering, Requirements Engineering, Program Comprehension, and Code Analysis"));
             professors.Add(new Professor("LSU", "William Duncan", "Knowledge Discovery and Data Mining, Bioinformatics, Stochastic Process and Markov Chains"));
 
+            // For adding professors:
+
+            // bool searchingMentors = true
+            
+            // if currentUser.isMentor:
+                // searchingMentors = false
+
+            // Query where (of all usernames) is not in swipedOnUser in incompletedMatches table
+
+            // Add each to professors
+
             int backgroundCardHeight = 500;
             int profileDetailsHeight = backgroundCardHeight - 100;
             int cardWidth = 360;
@@ -224,6 +235,20 @@ namespace MentorMeet.Views
         //Resets the UI objects to their original positions and then recycles the card.
         async void OnSwiped(object sender, SwipedEventArgs e)
         {
+            // if swiped left:
+                // add entry [swipingUser, swipedOnUser, swipedRight = false]
+
+            // if swiped right:
+                // add entry [swipingUser, swipedUser, swipedRight = true]
+                // if [swipingUser = swipedUser, swipedUser = currentUser, swipedRight = true] is in table:
+                    // New match
+                    // add entry(ies) into matches
+                    // add entry [id?, swipedUser, swipingUser]
+                    // add entry [id?, swipingUser, swipedUser]
+
+                    // Notify other user ?
+
+
             if (tapped)
                 resetProfileCard();
 

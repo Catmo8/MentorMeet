@@ -33,6 +33,17 @@ namespace MentorMeet.Views
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
 
+            // Query where currentUser == matchedUser1 OR currentUser == matchedUser2 in matchedUsers
+
+            // for each entry
+                // otherUser == ""
+                // if matchedUser1 != currentUser
+                    // otherUser == matchUser1
+                // else
+                    // otherUser == matchedUser2
+
+                // append User from database where username == otherUser in Users into people
+
             MessagerList.ItemsSource = people;
 
         }
