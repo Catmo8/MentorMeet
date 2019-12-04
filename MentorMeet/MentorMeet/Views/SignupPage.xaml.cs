@@ -14,9 +14,12 @@ namespace MentorMeet.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SignUpPage : ContentPage
     {
+        public bool isProfessor;
+
         public SignUpPage()
         {
             InitializeComponent();
+            isProfessor = false;
         }
 
         async private void Register_Clicked(object sender, EventArgs e)
@@ -60,9 +63,8 @@ namespace MentorMeet.Views
                     Email = Email.Text,
                     Major = Major.SelectedItem.ToString(),
                     Password = Password.Text,
-
+                    IsProfessor = isProfessor,
                 };
-
                 using (SQLiteConnection conn = new SQLiteConnection(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3")))
                 {
                     conn.CreateTable<User>();
@@ -71,6 +73,20 @@ namespace MentorMeet.Views
                 Navigation.PopModalAsync();
             }
 
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            if (sender == StudentBox && isProfessor)
+            {
+                Box.TranslateTo(Box.TranslationX - 100, Box.TranslationY);
+                isProfessor = false;
+            }
+            else if (sender == MentorBox && !isProfessor)
+            {
+                Box.TranslateTo(Box.TranslationX + 100, Box.TranslationY);
+                isProfessor = true;
+            }
         }
     }
 }
