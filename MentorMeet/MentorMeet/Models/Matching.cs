@@ -6,7 +6,7 @@ namespace MentorMeet.Models
     public class Matching
     {
         [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        public int MatchingId { get; set; }
         public User SwipingUser { get; set; }
         public User SwipedOnUser { get; set; }
         public bool SwipedRight { get; set; }

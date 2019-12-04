@@ -7,10 +7,10 @@ namespace MentorMeet.Models
     public class Messages
     {
         [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        public int MessageId { get; set; }
         public User FromUser { get; set; }
         public User ToUser { get; set; }
         public DateTime Time { get; set; }
-        public string Text { get; set; }
+        public string Message { get; set; }
     }
 }

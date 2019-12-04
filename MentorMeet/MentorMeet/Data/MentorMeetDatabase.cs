@@ -28,12 +28,12 @@ namespace MentorMeet.Data
 
         public Task<User> UserGetItemAsync(int id)
         {
-            return database.Table<User>().Where(i => i.Id == id).FirstOrDefaultAsync();
+            return database.Table<User>().Where(i => i.UserId == id).FirstOrDefaultAsync();
         }
 
         public Task<int> UserSaveItemAsync(User item)
         {
-            if (item.Id != 0)
+            if (item.UserId != 0)
             {
                 return database.UpdateAsync(item);
             }
@@ -57,12 +57,12 @@ namespace MentorMeet.Data
 
         public Task<Matches> MatchesGetItemAsync(int id)
         {
-            return database.Table<Matches>().Where(i => i.Id == id).FirstOrDefaultAsync();
+            return database.Table<Matches>().Where(i => i.MatchId == id).FirstOrDefaultAsync();
         }
 
         public Task<int> MatchesSaveItemAsync(Matches item)
         {
-            if (item.Id != 0)
+            if (item.MatchId != 0)
             {
                 return database.UpdateAsync(item);
             }
@@ -87,12 +87,12 @@ namespace MentorMeet.Data
 
         public Task<Matching> MatchingGetItemAsync(int id)
         {
-            return database.Table<Matching>().Where(i => i.Id == id).FirstOrDefaultAsync();
+            return database.Table<Matching>().Where(i => i.MatchingId == id).FirstOrDefaultAsync();
         }
 
         public Task<int> MatchingSaveItemAsync(Matching item)
         {
-            if (item.Id != 0)
+            if (item.MatchingId != 0)
             {
                 return database.UpdateAsync(item);
             }
@@ -117,12 +117,12 @@ namespace MentorMeet.Data
 
         public Task<Messages> MessagesGetItemAsync(int id)
         {
-            return database.Table<Messages>().Where(i => i.Id == id).FirstOrDefaultAsync();
+            return database.Table<Messages>().Where(i => i.MessageId == id).FirstOrDefaultAsync();
         }
 
         public Task<int> MessagesSaveItemAsync(Messages item)
         {
-            if (item.Id != 0)
+            if (item.MessageId != 0)
             {
                 return database.UpdateAsync(item);
             }

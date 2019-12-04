@@ -6,7 +6,7 @@ namespace MentorMeet.Models
     public class Matches
     {
         [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        public int MatchId { get; set; }
         public User MatchingUser { get; set; }
         public User MatchedUser { get; set; }
     }

@@ -7,6 +7,8 @@ using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MentorMeet.Users;
+using MentorMeet.Models;
+using SQLite;
 
 namespace MentorMeet.Views
 {
@@ -38,13 +40,29 @@ namespace MentorMeet.Views
             // For adding professors:
 
             // bool searchingMentors = true
-            
+
             // if currentUser.isMentor:
-                // searchingMentors = false
+            // searchingMentors = false
 
             // Query where (of all usernames) is not in swipedOnUser in incompletedMatches table
 
             // Add each to professors
+            AddProfessor();
+
+            try
+            {
+                string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3");
+                var conn = new SQLiteConnection(dbPath);
+                //var data1 = conn.Table<User>();
+                //var data2 = conn.CreateTable<Matches>();
+                //var data2 = conn.CreateTable<Matching>();
+                conn.CreateTable<Matches>();
+                conn.CreateTable<Matching>();
+            }
+            catch (Exception ex)
+            {
+                DisplayAlert("Error", ex.ToString(), "OK");
+            }
 
             int backgroundCardHeight = 500;
             int profileDetailsHeight = backgroundCardHeight - 100;
@@ -395,6 +413,24 @@ namespace MentorMeet.Views
                 {
                     currentProfessor = 0;
                 }
+            }
+        }
+        async void AddProfessor()
+        {
+            try
+            {
+                string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3");
+                var conn = new SQLiteConnection(dbPath);
+                //var data1 = conn.Table<User>();
+                //var data2 = conn.CreateTable<Matches>();
+                //var data2 = conn.CreateTable<Matching>();
+                //conn.CreateTable<Matches>();
+                //conn.CreateTable<Matching>();
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.ToString(), "OK");
             }
         }
     }
