@@ -7,6 +7,11 @@
              x:Class="MentorMeet.Views.MatchingMenteePage">
     <ContentPage.Content>
         <Grid x:Name="uniLogo">
+            <Grid.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Left" Swiped="OnSwiped"/>
+                <SwipeGestureRecognizer Direction="Right" Swiped="OnSwiped"/>
+            </Grid.GestureRecognizers>
+            
             <Image x:Name="organizationLogo"
                    WidthRequest="100"
                    HorizontalOptions="Start"
@@ -16,12 +21,7 @@
                    Source="LSU.png"/>
 
             <Grid x:Name="matchScreen">
-                <Grid.GestureRecognizers>
-                    <SwipeGestureRecognizer Direction="Left" Swiped="OnSwiped"/>
-                    <SwipeGestureRecognizer Direction="Right" Swiped="OnSwiped"/>
-                    <TapGestureRecognizer Tapped="OnTapped"/>
-
-                </Grid.GestureRecognizers>
+                
             
                 <!--<BoxView Color="Black"
                          CornerRadius="104"
@@ -52,6 +52,17 @@
           
             
             </Grid>
+            <Label Text="SWIPE"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   VerticalOptions="End"
+                   TranslationY="-70"/>
+            <Image x:Name="rightArrow" Source="arrow1" HorizontalOptions="Center" VerticalOptions="End" TranslationX="70" TranslationY="-30" WidthRequest="100"/>
+            <Image x:Name="leftArrow" Source="arrow1" HorizontalOptions="Center" VerticalOptions="End" TranslationX="-70" TranslationY="-30" WidthRequest="100" Rotation="180"/>
+            <Image Source="check" HorizontalOptions="End" VerticalOptions="End" WidthRequest="30" TranslationX="-20" TranslationY="-60"/>
+            <Image Source="x" HorizontalOptions="Start" VerticalOptions="End" WidthRequest="40" TranslationX="20" TranslationY="-60"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

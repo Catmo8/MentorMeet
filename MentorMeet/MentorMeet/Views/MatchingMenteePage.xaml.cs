@@ -177,6 +177,8 @@ namespace MentorMeet.Views
             uniLogo.Children.Add(checkMark);
             uniLogo.Children.Add(declineX);
 
+            AnimateSwipeArrows();
+
         }
 
         //Handles the swipe gestures and their respective animations.
@@ -236,27 +238,15 @@ namespace MentorMeet.Views
 
         }
 
-        async void OnTapped(object sender, EventArgs args)
+        async void AnimateSwipeArrows()
         {
-            return;
-            //If the card has been tapped already, reset all views to their original states
-            if (tapped)
-                resetProfileCard();
-            else 
+            while (true)
             {
-                profileDetailsBox.ScaleTo(1.2);
-                profileCircle.TranslateTo(0, profileCircle.TranslationY - 50);
-                foreach (BoxView b in detailCardShadow)
-                {
-                    b.ScaleTo(1.25);
-                    b.TranslateTo(0, b.TranslationY + 5);
-                }
-                foreach (BoxView b in profilePictureShadow)
-                {
-                    b.TranslateTo(0, b.TranslationY - 50);
-                    b.ScaleTo(1.05);
-                }
-                tapped = true;
+                leftArrow.TranslateTo(leftArrow.TranslationX - 10, leftArrow.TranslationY, 500);
+                await rightArrow.TranslateTo(rightArrow.TranslationX + 10, rightArrow.TranslationY, 500);
+
+                leftArrow.TranslateTo(leftArrow.TranslationX + 10, leftArrow.TranslationY, 500);
+                await rightArrow.TranslateTo(rightArrow.TranslationX - 10, rightArrow.TranslationY, 500);
             }
         }
 

@@ -17,23 +17,27 @@ namespace MentorMeet.Views
             InitializeComponent();
         }
 
-        public Entry getContact()
+        public Entry Email
         {
-            return email;
+            get { return email; }
+            set { email.Text = value.Text; }
         }
 
-        public Entry getName()
+        public Entry Name
         {
-            return displayName;
+            get { return displayName; }
+            set { displayName.Text = value.Text; }
         }
 
-        public Editor getDetails()
+        public Editor Details
         {
-            return detailsEditor;
+            get { return detailsEditor; }
+            set { detailsEditor.Text = value.Text; }
         }
-        public Editor getInterests()
+        public Editor Interests
         {
-            return interestEditor;
+            get { return interestEditor; }
+            set { interestEditor.Text = value.Text; }
         }
 
     }
