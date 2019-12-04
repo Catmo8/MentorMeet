@@ -15,19 +15,40 @@ namespace MentorMeet.Data
         {
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<User>().Wait();
+            database.CreateTableAsync<MessagesTable>().Wait();
         }
 
-        public Task<List<User>> GetItemsAsync()
+        public Task<List<User>> UserGetItemsAsync()
         {
             return database.Table<User>().ToListAsync();
         }
+        public Task<List<MessagesTable>> MessagesTableGetItemsAsync()
+        {
+            return database.Table<MessagesTable>().ToListAsync();
+        }
 
-        public Task<User> GetItemAsync(int id)
+        public Task<User> UserGetItemAsync(int id)
         {
             return database.Table<User>().Where(i => i.Id == id).FirstOrDefaultAsync();
         }
+        public Task<MessagesTable> MessagesTableGetItemAsync(int id)
+        {
+            return database.Table<MessagesTable>().Where(i => i.Id == id).FirstOrDefaultAsync();
+        }
 
-        public Task<int> SaveItemAsync(User item)
+        public Task<int> UserSaveItemAsync(User item)
+        {
+            if (item.Id != 0)
+            {
+                return database.UpdateAsync(item);
+            }
+            else
+            {
+                return database.InsertAsync(item);
+            }
+        }
+
+        public Task<int> MessagesTableSaveItemAsync(MessagesTable item)
         {
             if (item.Id != 0)
             {

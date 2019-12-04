@@ -10,12 +10,14 @@ using MentorMeet.Models;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using MentorMeet.Users;
+using SQLite;
+using System.IO;
 
 namespace MentorMeet.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MessagingIndividual : ContentPage
-    { 
+    {
         public ObservableCollection<Message> messages = new ObservableCollection<Message>()
         {
             new Message("William Duncan", new DateTime(2019, 12, 1, 16, 12, 15), "Hello, World!", false),
@@ -63,8 +65,19 @@ namespace MentorMeet.Views
         //   }
         //}
 
-        void Send_Tapped(object sender, EventArgs args)
+        async void Send_Tapped(object sender, System.EventArgs args)
         {
+            try
+            {
+                string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3");
+                var conn = new SQLiteConnection(dbPath);
+                var UserData = conn.Table<User>();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.ToString(), "OK");
+            }
+
             messages.Add(new Message("Seth Williamson", new DateTime(2019, 12, 1, 16, 12, 15), chatTextInput.Text, true));
 
             chatTextInput.Text = "";
