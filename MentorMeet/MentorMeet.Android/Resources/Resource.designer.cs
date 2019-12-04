@@ -5818,28 +5818,31 @@ namespace MentorMeet.Droid
 			public const int Profile_Check = 2131165309;
 			
 			// aapt resource value: 0x7F07007E
-			public const int SELU = 2131165310;
-			
-			// aapt resource value: 0x7F070080
-			public const int splashscreen = 2131165312;
+			public const int save = 2131165310;
 			
 			// aapt resource value: 0x7F07007F
-			public const int splash_background = 2131165311;
+			public const int SELU = 2131165311;
 			
 			// aapt resource value: 0x7F070081
-			public const int tooltip_frame_dark = 2131165313;
+			public const int splashscreen = 2131165313;
+			
+			// aapt resource value: 0x7F070080
+			public const int splash_background = 2131165312;
 			
 			// aapt resource value: 0x7F070082
-			public const int tooltip_frame_light = 2131165314;
+			public const int tooltip_frame_dark = 2131165314;
 			
 			// aapt resource value: 0x7F070083
-			public const int William_Duncan = 2131165315;
+			public const int tooltip_frame_light = 2131165315;
 			
 			// aapt resource value: 0x7F070084
-			public const int x = 2131165316;
+			public const int William_Duncan = 2131165316;
 			
 			// aapt resource value: 0x7F070085
-			public const int xamarin_logo = 2131165317;
+			public const int x = 2131165317;
+			
+			// aapt resource value: 0x7F070086
+			public const int xamarin_logo = 2131165318;
 			
 			static Drawable()
 			{
@@ -6797,17 +6800,20 @@ namespace MentorMeet.Droid
 		public partial class Mipmap
 		{
 			
-			// aapt resource value: 0x7F0C0001
-			public const int icon = 2131492865;
-			
 			// aapt resource value: 0x7F0C0002
-			public const int icon_round = 2131492866;
-			
-			// aapt resource value: 0x7F0C0000
-			public const int ic_person = 2131492864;
+			public const int icon = 2131492866;
 			
 			// aapt resource value: 0x7F0C0003
-			public const int launcher_foreground = 2131492867;
+			public const int icon_round = 2131492867;
+			
+			// aapt resource value: 0x7F0C0000
+			public const int ic_ac_unit = 2131492864;
+			
+			// aapt resource value: 0x7F0C0001
+			public const int ic_person = 2131492865;
+			
+			// aapt resource value: 0x7F0C0004
+			public const int launcher_foreground = 2131492868;
 			
 			static Mipmap()
 			{

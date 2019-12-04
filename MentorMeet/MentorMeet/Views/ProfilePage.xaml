@@ -4,10 +4,142 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:local="clr-namespace:MentorMeet.Views"
              x:Class="MentorMeet.Views.ProfilePage"
              BackgroundColor="#FF64289A">
     <ContentPage.Content>
         <Grid x:Name="profilePageGrid">
+ 
+            <BoxView x:Name="backgroundCard"
+                    BackgroundColor="White"
+                    CornerRadius="25"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start"
+                    WidthRequest="500"
+                    HeightRequest="900"
+                    TranslationY="130"/>
+
+            
+
+            <BoxView x:Name="purpleCircle"
+                BackgroundColor="#FF64289A"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                WidthRequest="200"
+                HeightRequest="200"
+                CornerRadius="100"/>
+
+            
+
+            <Label x:Name="nameLabel"
+                   Text="Anas Mahmoud"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start"
+                   TranslationY="200"
+                   FontSize="Title" 
+                   TextColor="Black"/>
+
+            <Grid x:Name="detailsGrid"
+                VerticalOptions="Start"
+                HorizontalOptions="Center"
+                TranslationY="250">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Text="Contact"
+                       FontSize="20"
+                       TranslationX="50"
+                       TextDecorations="Underline"
+                       TextColor="Black"/>
+                
+                <Label x:Name="contactInfo"
+                       Text="Anas@lsu.edu"
+                       TranslationY="30"
+                       TranslationX="40"
+                       TextColor="Black"/>
+
+                <Image Source="eye"
+                       VerticalOptions="Start"
+                       HorizontalOptions="End"
+                       WidthRequest="100"
+                       TranslationX="-30"/>
+                
+                <BoxView
+                    WidthRequest="350"
+                    Color="Gold" 
+                    HeightRequest="1"
+                    VerticalOptions="Start"
+                    TranslationY="80"/>
+
+                <BoxView
+                    WidthRequest="1"
+                    Color="Gold" 
+                    HeightRequest="70"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start"/>
+
+                <Frame
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start"
+                    BorderColor="Gold"
+                    WidthRequest="20"
+                    HeightRequest="20"
+                    CornerRadius="10"
+                    Padding="0"
+                    TranslationY="70"
+                    HasShadow="False"/>
+
+                <Label x:Name="areasOfInterest"
+                       Text="GUIs that aren't from 1995"
+                       Grid.Row="1"
+                       Margin="0,20,0,10"/>
+
+                <BoxView Grid.Row="2"
+                    WidthRequest="350"
+                    Color="Gold" 
+                    HeightRequest="1"
+                    VerticalOptions="Start"/>
+
+                <Label x:Name="profileDetails"
+                       Grid.Row="3"
+                       Text="We in dis beetch"/>
+            </Grid>
+            
+            <BoxView x:Name="backgroundCardOverlay"
+                    BackgroundColor="Black"
+                     Opacity="0"/>
+
+            <Frame x:Name="pictureFrame"
+                Padding="0"
+                HeightRequest="180"
+                WidthRequest="180"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                CornerRadius="90"
+                IsClippedToBounds="True"
+                HasShadow="True"
+                TranslationY="10">
+            </Frame>
+
+            <Frame x:Name="editProfilePage"
+                   BackgroundColor="White"
+                   CornerRadius="20"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Center"
+                   IsEnabled="False"
+                   IsVisible="False"
+                   WidthRequest="350"
+                   HeightRequest="500"
+                   TranslationY="200"
+                   Opacity="0">
+                <ScrollView x:Name="scrollView">
+                    <local:EditProfilePage
+                        x:Name="profileData"/>
+                </ScrollView>
+            </Frame>
 
             <Image x:Name="editProfile"
                        Source="ic_pencil_plus"
@@ -20,14 +152,6 @@
                     <TapGestureRecognizer Tapped="EditProfileClicked"/>
                 </Image.GestureRecognizers>
             </Image>
-
-            <!--<BoxView BackgroundColor="White"
-                     CornerRadius="25"
-                     HorizontalOptions="Center"
-                     VerticalOptions="Center"
-                     WidthRequest="500"
-                     HeightRequest="900"
-                     TranslationY="100"/> -->
         </Grid>
     </ContentPage.Content>
 </ContentPage>
