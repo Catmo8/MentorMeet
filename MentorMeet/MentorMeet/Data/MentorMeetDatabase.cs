@@ -17,17 +17,17 @@ namespace MentorMeet.Data
             database.CreateTableAsync<User>().Wait();
         }
 
-        public Task<List<User>> GetItemsAsync()
+        public Task<List<User>> UserGetItemsAsync()
         {
             return database.Table<User>().ToListAsync();
         }
 
-        public Task<User> GetItemAsync(int id)
+        public Task<User> UserGetItemAsync(int id)
         {
             return database.Table<User>().Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveItemAsync(User item)
+        public Task<int> UserSaveItemAsync(User item)
         {
             if (item.Id != 0)
             {

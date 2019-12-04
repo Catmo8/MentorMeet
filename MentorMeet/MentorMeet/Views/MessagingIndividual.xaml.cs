@@ -10,17 +10,19 @@ using MentorMeet.Models;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using MentorMeet.Users;
+using SQLite;
+using System.IO;
 
 namespace MentorMeet.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MessagingIndividual : ContentPage
-    { 
+    {
         public ObservableCollection<Message> messages = new ObservableCollection<Message>()
         {
             new Message("William Duncan", new DateTime(2019, 12, 1, 16, 12, 15), "Hello, World!", false),
-            new Message("Seth Williamson", new DateTime(2019, 12, 1, 16, 12, 15), "Lorem ipsum ", true),
-            new Message("Seth Williamson", new DateTime(2019, 12, 1, 16, 12, 15), "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", true),
+            new Message(CurrentUser.First + " " + CurrentUser.Last, new DateTime(2019, 12, 1, 16, 12, 15), "Lorem ipsum ", true),
+            new Message(CurrentUser.First + " " + CurrentUser.Last, new DateTime(2019, 12, 1, 16, 12, 15), "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", true),
             new Message("William Duncan", new DateTime(2019, 12, 1, 16, 12, 15), "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", false)
         };
         
@@ -48,8 +50,8 @@ namespace MentorMeet.Views
             messages = new ObservableCollection<Message>()
             {
             new Message(individual.name, new DateTime(2019, 12, 1, 16, 12, 15), "Hello, World!", false),
-            new Message("Seth Williamson", new DateTime(2019, 12, 1, 16, 12, 15), "Lorem ipsum ", true),
-            new Message("Seth Williamson", new DateTime(2019, 12, 1, 16, 12, 15), "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", true),
+            new Message(CurrentUser.First + " " + CurrentUser.Last, new DateTime(2019, 12, 1, 16, 12, 15), "Lorem ipsum ", true),
+            new Message(CurrentUser.First + " " + CurrentUser.Last, new DateTime(2019, 12, 1, 16, 12, 15), "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", true),
             new Message(individual.name, new DateTime(2019, 12, 1, 16, 12, 15), "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", false)
             };
 
@@ -71,9 +73,9 @@ namespace MentorMeet.Views
         //   }
         //}
 
-        void Send_Tapped(object sender, EventArgs args)
+        void Send_Tapped(object sender, System.EventArgs args)
         {
-            messages.Add(new Message("Seth Williamson", new DateTime(2019, 12, 1, 16, 12, 15), chatTextInput.Text, true));
+            messages.Add(new Message(CurrentUser.First + " " + CurrentUser.Last, new DateTime(2019, 12, 1, 16, 12, 15), chatTextInput.Text, true));
 
             chatTextInput.Text = "";
         }
