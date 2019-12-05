@@ -20,11 +20,11 @@
     
     <ContentPage.Content>
         <StackLayout BackgroundColor="LightGray">
-            <local:BetterListView x:Name="MessageList" SeparatorColor="LightSlateGray" HasUnevenRows="True">
+            <local:BetterListView x:Name="MessageList" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Margin="10,0" >
+                            <StackLayout Margin="10,15,10,15" >
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="{Binding nameSide}">
                                     <Label Text="{Binding name}" FontAttributes="Bold" FontSize="14" TextColor="#FF461D7C"/>
                                 </StackLayout>

@@ -29,7 +29,6 @@ namespace MentorMeet.Views
 
             //Binding the fields in the profile to their respective fields in profile editor
             profileData.Name.SetBinding(Entry.TextProperty, new Binding("Text", source: nameLabel));
-            profileData.Email.SetBinding(Entry.TextProperty, new Binding("Text", source: contactInfo));
             profileData.Interests.SetBinding(Editor.TextProperty, new Binding("Text", source: areasOfInterest));
             profileData.Details.SetBinding(Editor.TextProperty, new Binding("Text", source: profileDetails));
 
