@@ -35,7 +35,7 @@ namespace MentorMeet.Views
 
             nameLabel.Text = CurrentUser.First + ' ' + CurrentUser.Last;
             contactInfo.Text = CurrentUser.Email;
-            areasOfInterest.Text = CurrentUser.Major;
+            areasOfInterest.Text = CurrentUser.Interests;
         }
 
         //Creates an autosized gap in the yellow line by the name
@@ -64,7 +64,8 @@ namespace MentorMeet.Views
                     CurrentUser.First = nameLabel.Text.Split(' ')[0];
                     CurrentUser.Last = nameLabel.Text.Split(' ')[1];
                     CurrentUser.Details = profileDetails.Text;
-                    CurrentUser.Major = areasOfInterest.Text;
+                    CurrentUser.Interests = areasOfInterest.Text;
+                    EditUserDetails();
                     ReturnToProfile();
                 }
 
@@ -142,6 +143,7 @@ namespace MentorMeet.Views
                 return stream;
             });
         }
+
         #region Accessing User Database for Profile Page
         async void EditUserDetails()
         {
@@ -155,9 +157,11 @@ namespace MentorMeet.Views
                 currentUserData.First = CurrentUser.First; 
                 currentUserData.Last = CurrentUser.Last; 
                 currentUserData.Interests = CurrentUser.Interests; 
-                currentUserData.Details = CurrentUser.Details; 
+                currentUserData.Details = CurrentUser.Details;
 
-                await App.Database.UserSaveItemAsync(currentUserData);
+                conn.InsertOrReplace(currentUserData);
+
+                //await App.Database.UserSaveItemAsync(currentUserData);
 
                 conn.Close();
             }
