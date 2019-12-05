@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MentorMeet.Models;
+using MentorMeet.Users;
 using Plugin.Media;
+using SQLite;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -31,7 +33,9 @@ namespace MentorMeet.Views
             profileData.Interests.SetBinding(Editor.TextProperty, new Binding("Text", source: areasOfInterest));
             profileData.Details.SetBinding(Editor.TextProperty, new Binding("Text", source: profileDetails));
 
-
+            nameLabel.Text = CurrentUser.First + ' ' + CurrentUser.Last;
+            contactInfo.Text = CurrentUser.Email;
+            areasOfInterest.Text = CurrentUser.Major;
         }
 
         //Creates an autosized gap in the yellow line by the name
@@ -41,8 +45,10 @@ namespace MentorMeet.Views
             await Task.Delay(500);
             nameLabel.WidthRequest = nameLabel.Width + 40;
         }
-        //Changes view from profile to edit profile
-        async void EditProfileClicked(object sender, EventArgs e)
+
+    
+    //Changes view from profile to edit profile
+    async void EditProfileClicked(object sender, EventArgs e)
         {
             int moveAmount = 30;
             if (!editProfileToggle)
@@ -59,7 +65,6 @@ namespace MentorMeet.Views
                     contactInfo.Text = profileData.Email.Text;
                     areasOfInterest.Text = profileData.Interests.Text;
                     profileDetails.Text = profileData.Details.Text;*/
-
                     ReturnToProfile();
                 }
 

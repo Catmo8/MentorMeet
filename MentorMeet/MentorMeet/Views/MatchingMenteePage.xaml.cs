@@ -49,12 +49,12 @@ namespace MentorMeet.Views
             // Add each to professors
             AddProfessor();
 
-            int backgroundCardHeight = 500;
+            int backgroundCardHeight = 550;
             int profileDetailsHeight = backgroundCardHeight - 100;
             int cardWidth = 360;
-            int profileDetailsYStart = -50;
+            int profileDetailsYStart = -30;
             int profileCircleSize = 100;
-            int profileCircleYStart = profileDetailsYStart - 200;
+            int profileCircleYStart = profileDetailsYStart - 220;
 
             //for keeping track of the profileDetailsCard state
             tapped = false;
@@ -110,7 +110,7 @@ namespace MentorMeet.Views
             details = new Label();
             name.Text = professors[0].name;
             name.HorizontalOptions = LayoutOptions.Center;
-            name.TranslationY = profileDetailsYStart + 200;
+            name.TranslationY = profileDetailsYStart + 180;
             name.FontSize = 30;
 
             details.Text = professors[0].details;
