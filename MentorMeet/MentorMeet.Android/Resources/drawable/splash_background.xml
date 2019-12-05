@@ -2,12 +2,11 @@
  
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
   <item>
-    <color android:color="#000000"/>
+    <color android:color="#FF461D7C"/>
   </item>
   <item>
     <bitmap
-    android:src="@drawable/splashscreen"
-    android:tileMode="disabled"
+    android:src="@drawable/MentorMeetYWResized"
     android:gravity="center"/>
   </item>
 </layer-list>

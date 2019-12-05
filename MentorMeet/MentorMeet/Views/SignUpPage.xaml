@@ -39,7 +39,47 @@
             <Entry Placeholder="Password" IsPassword="true" x:Name="Password"/>
             <Entry Placeholder="Confirm Password" IsPassword="true" x:Name="ConfirmPass"/>
             <Label x:Name="warningLabel" Text="" IsVisible="False" TextColor="Blue" FontSize="15" BackgroundColor="Transparent" FlexLayout.AlignSelf="End"/>
-            <Button Text="Register" CornerRadius="3" x:Name="Register" Clicked ="Register_Clicked"></Button>
+            <BoxView
+                WidthRequest="200"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                BackgroundColor="Gray"
+                CornerRadius="20"></BoxView>
+
+            <BoxView
+                WidthRequest="100"
+                TranslationX="-50"
+                TranslationY="-46"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                BackgroundColor="Purple"
+                x:Name="Box"
+                CornerRadius="20"></BoxView>
+
+            <Label Text="Student"
+                   FontSize="15"
+                   HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                   TranslationX="-50"
+                   TranslationY="-83"
+                   x:Name="StudentBox">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+            
+            <Label Text="Mentor"
+                   FontSize="15"
+                   HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                   TranslationX="50"
+                   TranslationY="-110"
+                   x:Name="MentorBox">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+            <Button Text="Register" CornerRadius="3" x:Name="Register" Clicked ="Register_Clicked" TranslationY="-90"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

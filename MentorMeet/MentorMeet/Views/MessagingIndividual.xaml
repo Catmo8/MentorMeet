@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:MentorMeet"
+             mc:Ignorable="d"
+             x:Class="MentorMeet.Views.MessagingIndividual">
+    
+    <NavigationPage.TitleView>
+        <StackLayout  Orientation="Horizontal" VerticalOptions="Fill">
+            <Image x:Name="IndividualTitleImage" Source="{Binding name}" VerticalOptions="FillAndExpand" HorizontalOptions="Start" Aspect="AspectFit" HeightRequest="60"/>
+            <StackLayout Orientation="Vertical" Spacing="0">
+                <Label x:Name="IndividualTitleName" Text="{Binding name}" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="25" MaxLines="1" LineBreakMode="CharacterWrap" TextColor="#2D2D2D"/>
+                <Label x:Name="IndividualTitleDetails" Text="{Binding details}" HorizontalOptions="StartAndExpand" FontSize="15" MaxLines="1" LineBreakMode="CharacterWrap"/>
+            </StackLayout>
+            <ImageButton Source="closeX3" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" BackgroundColor="White" Clicked="ImageButton_Clicked"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="LightGray">
+            <local:BetterListView x:Name="MessageList" SeparatorColor="LightSlateGray" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Margin="10,0" >
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="{Binding nameSide}">
+                                    <Label Text="{Binding name}" FontAttributes="Bold" FontSize="14" TextColor="#FF461D7C"/>
+                                </StackLayout>
+                                <Label Text="{Binding text}" TextColor="Black" FontSize="16" HorizontalTextAlignment="{Binding textSide}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </local:BetterListView>
+            <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Entry x:Name="chatTextInput" Text="{Binding TextToSend}" Margin="1" TextColor="Black" Keyboard="Chat" HorizontalOptions="FillAndExpand" PlaceholderColor="LightGray" Placeholder="Type your message here" Grid.Row="0" Grid.Column="0" Completed="Send_Tapped"/>
+                <Label Text="Send" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Send_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+            <!-- -->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

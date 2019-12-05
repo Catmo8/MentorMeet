@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MentorMeet.Views.UserPostDetails">
+    <ContentPage.Content>
+
+          <StackLayout
+                    Orientation="Vertical">
+
+                    <StackLayout
+                        BackgroundColor="LightGray"
+                        HeightRequest="5"/>
+
+        
+                    <StackLayout
+                        Orientation="Vertical"
+                        Padding="5">
+
+                        <StackLayout
+                            Orientation="Horizontal">
+
+                             <Image
+                                Source="thanos.jpg"
+                                HeightRequest="50"
+                                WidthRequest="50"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"/>
+
+                    
+
+                            <StackLayout
+                                Orientation="Vertical">
+
+                                <StackLayout
+                                    Orientation="Horizontal">
+
+                                    <Label
+                                    Text="Username"/>
+
+                                    <Image
+                                        Source="dot.png"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        HeightRequest="10"
+                                        WidthRequest="10"/>
+
+                                    <Label
+                                    Text="Nov 20"/>
+
+                                </StackLayout>
+
+                       
+                                <Label
+                                    Font="Bold"
+                                    TextColor="Black"
+                                    Text="This is the title for the post and this is a multiline post"/>
+
+                            </StackLayout>
+
+                        </StackLayout>
+
+                             <Label
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                Text="This is the content of the page and it describes the actual content of the posts. This can be of multiple lines. "/>
+
+                            <Image
+                                Source="thanos.jpg"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            HeightRequest="25"
+                            HorizontalOptions="End"
+                            Padding="60, 0, 0, 0">
+
+                            <StackLayout
+                                Orientation="Horizontal"
+                                WidthRequest="150">
+
+                                <ImageButton
+                                     VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                    Source="like.png"/>
+                                <Label
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Center"
+                                    Text="10"/>
+                            </StackLayout>
+
+                             <StackLayout
+                                Orientation="Horizontal"
+                                WidthRequest="150">
+
+                                <ImageButton
+                                     VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                    Source="comment.png"/>
+                                <Label
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="Center"
+                                    Text="10"/>
+                            </StackLayout>
+
+                             <StackLayout
+                                Orientation="Horizontal"
+                                WidthRequest="75">
+
+                                <ImageButton
+                                     VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                    Source="share.png"/>
+                    
+                            </StackLayout>
+
+
+               
+                        </StackLayout>
+
+            
+                    </StackLayout>
+
+                     <StackLayout
+                        BackgroundColor="LightGray"
+                        HeightRequest="5"/>
+
+             </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
