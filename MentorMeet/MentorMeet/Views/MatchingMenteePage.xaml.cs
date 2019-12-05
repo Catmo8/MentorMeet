@@ -7,6 +7,8 @@ using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MentorMeet.Users;
+using MentorMeet.Models;
+using SQLite;
 
 namespace MentorMeet.Views
 {
@@ -29,16 +31,28 @@ namespace MentorMeet.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-
+            UIHelper helper = new UIHelper();
             currentProfessor = 0;
             professors.Add(new Professor("LSU", "Konstantin Busch", "Distributed Algorithms and Data Structures, Communication Algorithms, and Algorithmic Game Theory"));
             professors.Add(new Professor("LSU", "Anas Mahmoud", "Software Engineering, Requirements Engineering, Program Comprehension, and Code Analysis"));
             professors.Add(new Professor("LSU", "William Duncan", "Knowledge Discovery and Data Mining, Bioinformatics, Stochastic Process and Markov Chains"));
 
+            // For adding professors:
+
+            // bool searchingMentors = true
+
+            // if currentUser.isMentor:
+            // searchingMentors = false
+
+            // Query where (of all usernames) is not in swipedOnUser in incompletedMatches table
+
+            // Add each to professors
+            AddProfessor();
+
             int backgroundCardHeight = 500;
             int profileDetailsHeight = backgroundCardHeight - 100;
             int cardWidth = 360;
-            int profileDetailsYStart = 50;
+            int profileDetailsYStart = -50;
             int profileCircleSize = 100;
             int profileCircleYStart = profileDetailsYStart - 200;
 
@@ -46,17 +60,16 @@ namespace MentorMeet.Views
             tapped = false;
             double opacity = 0.05;
             
-            /*generateShadowBoxes(numOfBoxes, cornerRadius, width, height, yStart, moveX)
+            /*GenerateShadowBoxes(numOfBoxes, cornerRadius, width, height, yStart, moveX)
              * 
-             *generateShadowBoxes function takes amount of boxviews(smoothness of the gradient), corner radius, width, height,
+             *GenerateShadowBoxes function takes amount of boxviews(smoothness of the gradient), corner radius, width, height,
              *starting position on the y-axis(function autocenters each box so this the starting position with respect to the center.
              *If 0, the box will be in the center of the UI) and whether or not the x axis needs to be adjusted per box like the y axis(for a perspective effect).
              *Both Y(int) and X(bool) parameters are optional and will default to 0 (the center in this case) and false respectively;
              */
-            //cardShadow = generateShadowBoxes(10, 26, cardWidth+2, backgroundCardHeight+2, 0, true); //Generates shadow for entire profile card
-            detailCardShadow = generateShadowBoxes(20, 26, cardWidth+2, profileDetailsHeight+2, profileDetailsYStart, true); //Generates shadow for the profile details
-            profilePictureShadow = generateShadowBoxes(10, profileCircleSize / 2, profileCircleSize, profileCircleSize, profileCircleYStart, true);
-            
+            //cardShadow = GenerateShadowBoxes(10, 26, cardWidth+2, backgroundCardHeight+2, 0, true); //Generates shadow for entire profile card
+            detailCardShadow = helper.GenerateShadowBoxes(20, 26, cardWidth+2, profileDetailsHeight+2, profileDetailsYStart, true); //Generates shadow for the profile details
+            profilePictureShadow = helper.GenerateShadowBoxes(10, profileCircleSize / 2, profileCircleSize, profileCircleSize, profileCircleYStart, true);
 
             //Creates the card behind the profileDetails card
             BoxView backgroundCard = new BoxView();
@@ -73,10 +86,7 @@ namespace MentorMeet.Views
             organizationLogo.HeightRequest = 100;
             organizationLogo.HorizontalOptions = LayoutOptions.Center;
             organizationLogo.VerticalOptions = LayoutOptions.Center;*/
-            organizationLogo.TranslationY = profileCircleYStart - 100 ;
             
-            
-
             //Creates the white boxview that will hold the profile details.
             profileDetailsBox = new BoxView();
             profileDetailsBox.Color = Color.White;
@@ -87,8 +97,6 @@ namespace MentorMeet.Views
             profileDetailsBox.HeightRequest = profileDetailsHeight;
             profileDetailsBox.WidthRequest = cardWidth;
             
-
-
             profileCircle = new BoxView();
             profileCircle.HorizontalOptions = LayoutOptions.Center;
             profileCircle.VerticalOptions = LayoutOptions.Center;
@@ -97,7 +105,6 @@ namespace MentorMeet.Views
             profileCircle.CornerRadius = profileCircle.WidthRequest/2;
             profileCircle.Color = Color.Gold;
             profileCircle.TranslationY = profileCircleYStart;
-
 
             name = new Label();
             details = new Label();
@@ -137,7 +144,6 @@ namespace MentorMeet.Views
             frame.TranslationY = profileCircle.TranslationY;
             frame.BackgroundColor = Color.Transparent;
 
-            
             uniLogo.BackgroundColor = Color.FromHex("#FF64289A");
             //Adds all created BoxViews to the UI
             /*foreach (BoxView b in cardShadow)
@@ -184,46 +190,28 @@ namespace MentorMeet.Views
             uniLogo.Children.Add(checkMark);
             uniLogo.Children.Add(declineX);
 
-        }
+            AnimateSwipeArrows();
 
-        public BoxView[] generateShadowBoxes(int numOfBoxes, int cornerRadius, int width, int height, int yStart = 0, bool moveX = false)
-        {
-            
-            if(numOfBoxes > 15)
-            {
-                numOfBoxes = 15;
-            }
-
-            BoxView[] boxViews = new BoxView[numOfBoxes];
-
-            double opacity = 1/(double)numOfBoxes; //to gradually and equally increase the opacity as the cardShadow overlap.
-            //Generates the cardShadow for the shadow's gradient effect
-
-            for (int i = 0; i < numOfBoxes; i++)
-            {
-                BoxView tempBox = new BoxView();
-                tempBox.CornerRadius = cornerRadius;
-                tempBox.HorizontalOptions = LayoutOptions.Center;
-                tempBox.VerticalOptions = LayoutOptions.Center;
-                tempBox.WidthRequest = width;
-                tempBox.HeightRequest = height;
-                tempBox.TranslationY = i + yStart;
-                if(moveX)
-                    tempBox.TranslationX = (i) / 2;
-
-                tempBox.Color = Color.FromHex("#000000");
-
-                tempBox.Opacity = opacity;
-                boxViews[i] = tempBox;
-            }
-            
-            return boxViews;
         }
 
         //Handles the swipe gestures and their respective animations.
         //Resets the UI objects to their original positions and then recycles the card.
         async void OnSwiped(object sender, SwipedEventArgs e)
         {
+            // if swiped left:
+                // add entry [swipingUser, swipedOnUser, swipedRight = false]
+
+            // if swiped right:
+                // add entry [swipingUser, swipedUser, swipedRight = true]
+                // if [swipingUser = swipedUser, swipedUser = currentUser, swipedRight = true] is in table:
+                    // New match
+                    // add entry(ies) into matches
+                    // add entry [id?, swipedUser, swipingUser]
+                    // add entry [id?, swipingUser, swipedUser]
+
+                    // Notify other user ?
+
+
             if (tapped)
                 resetProfileCard();
 
@@ -277,27 +265,15 @@ namespace MentorMeet.Views
 
         }
 
-        async void OnTapped(object sender, EventArgs args)
+        async void AnimateSwipeArrows()
         {
-            return;
-            //If the card has been tapped already, reset all views to their original states
-            if (tapped)
-                resetProfileCard();
-            else 
+            while (true)
             {
-                profileDetailsBox.ScaleTo(1.2);
-                profileCircle.TranslateTo(0, profileCircle.TranslationY - 50);
-                foreach (BoxView b in detailCardShadow)
-                {
-                    b.ScaleTo(1.25);
-                    b.TranslateTo(0, b.TranslationY + 5);
-                }
-                foreach (BoxView b in profilePictureShadow)
-                {
-                    b.TranslateTo(0, b.TranslationY - 50);
-                    b.ScaleTo(1.05);
-                }
-                tapped = true;
+                leftArrow.TranslateTo(leftArrow.TranslationX - 10, leftArrow.TranslationY, 500);
+                await rightArrow.TranslateTo(rightArrow.TranslationX + 10, rightArrow.TranslationY, 500);
+
+                leftArrow.TranslateTo(leftArrow.TranslationX + 10, leftArrow.TranslationY, 500);
+                await rightArrow.TranslateTo(rightArrow.TranslationX - 10, rightArrow.TranslationY, 500);
             }
         }
 
@@ -372,5 +348,27 @@ namespace MentorMeet.Views
                 }
             }
         }
+
+        #region Accessing Matching Database
+        async void AddProfessor()
+        {
+            try
+            {
+                string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3");
+                var conn = new SQLiteConnection(dbPath);
+                var data1 = conn.Table<User>();
+                var data2 = conn.CreateTable<Matches>();
+                var data3 = conn.CreateTable<Matching>();
+
+                //var data  = conn.Query<User>("SELECT * FROM User WHERE ")
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.ToString(), "OK");
+            }
+        }
+        #endregion
     }
 }
