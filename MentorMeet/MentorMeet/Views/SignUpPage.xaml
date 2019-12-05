@@ -52,7 +52,7 @@
                 TranslationY="-46"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
-                BackgroundColor="Purple"
+                BackgroundColor="#FF461D7C"
                 x:Name="Box"
                 CornerRadius="20"></BoxView>
 

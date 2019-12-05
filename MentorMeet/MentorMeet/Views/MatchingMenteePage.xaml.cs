@@ -163,7 +163,7 @@ namespace MentorMeet.Views
             frame.TranslationY = profileCircle.TranslationY;
             frame.BackgroundColor = Color.Transparent;
 
-            uniLogo.BackgroundColor = Color.FromHex("#FF64289A");
+            uniLogo.BackgroundColor = Color.FromHex("#FF461D7C");
             //Adds all created BoxViews to the UI
             /*foreach (BoxView b in cardShadow)
                 matchScreen.Children.Add(b);*/
