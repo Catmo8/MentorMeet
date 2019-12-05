@@ -62,7 +62,9 @@ namespace MentorMeet.Views
                     CurrentUser.Last = data1.Last;
                     CurrentUser.Email = data1.Email;
                     CurrentUser.Major = data1.Major;
-                    CurrentUser.IsProfessor = data1.IsProfessor;
+                    CurrentUser.IsProfessor = data1.IsMentor;
+
+                    conn.Close();
                     
                     await Navigation.PushModalAsync(new MainPage());
                     
