@@ -5713,15 +5713,16 @@ namespace MentorMeet.Droid
 			public const int Anas_Mahmoud = 2131165274;
 			
 			// aapt resource value: 0x7F07005B
-			public const int avd_hide_password = 2131165275;
+			public const int arrow1 = 2131165275;
 			
 			// aapt resource value: 0x7F07005C
-			public const int avd_show_password = 2131165276;
+			public const int arrow2 = 2131165276;
 			
 			// aapt resource value: 0x7F07005D
-			public const int background1 = 2131165277;
+			public const int avd_hide_password = 2131165277;
 			
 			// aapt resource value: 0x7F07005E
+
 			public const int Bijaya_Karki = 2131165278;
 			
 			// aapt resource value: 0x7F07005F
@@ -6824,17 +6825,20 @@ namespace MentorMeet.Droid
 		public partial class Mipmap
 		{
 			
-			// aapt resource value: 0x7F0C0001
-			public const int icon = 2131492865;
-			
 			// aapt resource value: 0x7F0C0002
-			public const int icon_round = 2131492866;
-			
-			// aapt resource value: 0x7F0C0000
-			public const int ic_person = 2131492864;
+			public const int icon = 2131492866;
 			
 			// aapt resource value: 0x7F0C0003
-			public const int launcher_foreground = 2131492867;
+			public const int icon_round = 2131492867;
+			
+			// aapt resource value: 0x7F0C0000
+			public const int ic_ac_unit = 2131492864;
+			
+			// aapt resource value: 0x7F0C0001
+			public const int ic_person = 2131492865;
+			
+			// aapt resource value: 0x7F0C0004
+			public const int launcher_foreground = 2131492868;
 			
 			static Mipmap()
 			{
@@ -11498,7 +11502,10 @@ namespace MentorMeet.Droid
 		{
 			
 			// aapt resource value: 0x7F100000
-			public const int xamarin_essentials_fileprovider_file_paths = 2131755008;
+			public const int file_paths = 2131755008;
+			
+			// aapt resource value: 0x7F100001
+			public const int xamarin_essentials_fileprovider_file_paths = 2131755009;
 			
 			static Xml()
 			{

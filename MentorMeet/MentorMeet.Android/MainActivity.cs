@@ -6,12 +6,19 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using System.IO;
+using System.Threading.Tasks;
+using Android.Content;
+using Plugin.CurrentActivity;
 
 namespace MentorMeet.Droid
 {
     [Activity(Label = "MentorMeet", Icon = "@mipmap/icon", Theme = "@style/MyTheme.Splash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        internal static MainActivity Instance { get; private set; }
+
+        public static readonly int PickImageId = 1000;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -24,6 +31,8 @@ namespace MentorMeet.Droid
             LoadApplication(new App());
 
             Window.SetStatusBarColor(Android.Graphics.Color.Rgb(70, 29, 124));
+
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -31,5 +40,29 @@ namespace MentorMeet.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+        public TaskCompletionSource<Stream> PickImageTaskCompletionSource { set; get; }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent intent)
+        {
+            base.OnActivityResult(requestCode, resultCode, intent);
+
+            if (requestCode == PickImageId)
+            {
+                if ((resultCode == Result.Ok) && (intent != null))
+                {
+                    Android.Net.Uri uri = intent.Data;
+                    Stream stream = ContentResolver.OpenInputStream(uri);
+
+                    // Set the Stream as the completion of the Task
+                    PickImageTaskCompletionSource.SetResult(stream);
+                }
+                else
+                {
+                    PickImageTaskCompletionSource.SetResult(null);
+                }
+            }
+        }
+
     }
 }
