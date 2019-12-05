@@ -130,7 +130,8 @@
                 HasShadow="True"
                 TranslationY="10">
 
-                <Image x:Name="profilePicture"/>
+                <Image x:Name="profilePicture"
+                       Source="Stephen_George"/>
             </Frame>
 
             <Frame x:Name="editProfilePage"

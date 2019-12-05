@@ -131,9 +131,6 @@
     <AndroidResource Include="Resources\drawable\William_Duncan.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\check.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\splashscreen.png" />
   </ItemGroup>
   <ItemGroup>
@@ -219,6 +216,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\xml\file_paths.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Stephen_George.jfif" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\check.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\x.png" />
