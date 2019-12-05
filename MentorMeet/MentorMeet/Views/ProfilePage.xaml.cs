@@ -36,6 +36,7 @@ namespace MentorMeet.Views
             nameLabel.Text = CurrentUser.First + ' ' + CurrentUser.Last;
             contactInfo.Text = CurrentUser.Email;
             areasOfInterest.Text = CurrentUser.Interests;
+            profileDetails.Text = CurrentUser.Details;
         }
 
         //Creates an autosized gap in the yellow line by the name
