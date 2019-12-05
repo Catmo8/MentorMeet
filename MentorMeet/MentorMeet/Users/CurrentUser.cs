@@ -8,6 +8,7 @@
         public static string Email { get; set; }
         public static string Major { get; set; }
         public static bool IsMentor { get; set; }
+        public static string Interests { get; set; }
         public static string Details { get; set; }
     }
 }

@@ -5,9 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MentorMeet.Models;
+using MentorMeet.Users;
 using Plugin.Media;
+using SQLite;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using SQLite;
 
 namespace MentorMeet.Views
 {
@@ -27,11 +30,12 @@ namespace MentorMeet.Views
 
             //Binding the fields in the profile to their respective fields in profile editor
             profileData.Name.SetBinding(Entry.TextProperty, new Binding("Text", source: nameLabel));
-            profileData.Email.SetBinding(Entry.TextProperty, new Binding("Text", source: contactInfo));
             profileData.Interests.SetBinding(Editor.TextProperty, new Binding("Text", source: areasOfInterest));
             profileData.Details.SetBinding(Editor.TextProperty, new Binding("Text", source: profileDetails));
 
-
+            nameLabel.Text = CurrentUser.First + ' ' + CurrentUser.Last;
+            contactInfo.Text = CurrentUser.Email;
+            areasOfInterest.Text = CurrentUser.Interests;
         }
 
         //Creates an autosized gap in the yellow line by the name
@@ -41,8 +45,10 @@ namespace MentorMeet.Views
             await Task.Delay(500);
             nameLabel.WidthRequest = nameLabel.Width + 40;
         }
-        //Changes view from profile to edit profile
-        async void EditProfileClicked(object sender, EventArgs e)
+
+    
+    //Changes view from profile to edit profile
+    async void EditProfileClicked(object sender, EventArgs e)
         {
             int moveAmount = 30;
             if (!editProfileToggle)
@@ -55,17 +61,17 @@ namespace MentorMeet.Views
 
                 if (decision == "Yes")
                 {
-                    /*nameLabel.Text = profileData.Name.Text;
-                    contactInfo.Text = profileData.Email.Text;
-                    areasOfInterest.Text = profileData.Interests.Text;
-                    profileDetails.Text = profileData.Details.Text;*/
-
+                    CurrentUser.First = nameLabel.Text.Split(' ')[0];
+                    CurrentUser.Last = nameLabel.Text.Split(' ')[1];
+                    CurrentUser.Details = profileDetails.Text;
+                    CurrentUser.Interests = areasOfInterest.Text;
+                    EditUserDetails();
                     ReturnToProfile();
                 }
 
                 else if (decision == "Discard Changes")
                     ReturnToProfile();
-            }  
+            }
         }
 
         async void ReturnToProfile()
@@ -125,7 +131,7 @@ namespace MentorMeet.Views
 
             var file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
             {
-                
+
             });
 
             if (file == null)
@@ -137,6 +143,34 @@ namespace MentorMeet.Views
                 return stream;
             });
         }
+
+        #region Accessing User Database for Profile Page
+        async void EditUserDetails()
+        {
+            try
+            {
+                string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3");
+                var conn = new SQLiteConnection(dbPath);
+                var usersData = conn.Table<User>();
+                var currentUserData = usersData.Where(x => x.Email == CurrentUser.Email).FirstOrDefault();
+
+                currentUserData.First = CurrentUser.First; 
+                currentUserData.Last = CurrentUser.Last; 
+                currentUserData.Interests = CurrentUser.Interests; 
+                currentUserData.Details = CurrentUser.Details;
+
+                conn.InsertOrReplace(currentUserData);
+
+                //await App.Database.UserSaveItemAsync(currentUserData);
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.ToString(), "OK");
+            }
+        }
+        #endregion
     }
 
 }

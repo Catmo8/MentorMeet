@@ -5884,7 +5884,10 @@ namespace MentorMeet.Droid
 			public const int William_Duncan = 2131165331;
 			
 			// aapt resource value: 0x7F070094
-			public const int xamarin_logo = 2131165332;
+			public const int x = 2131165332;
+			
+			// aapt resource value: 0x7F070095
+			public const int xamarin_logo = 2131165333;
 			
 			static Drawable()
 			{

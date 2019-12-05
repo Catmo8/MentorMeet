@@ -17,12 +17,6 @@ namespace MentorMeet.Views
             InitializeComponent();
         }
 
-        public Entry Email
-        {
-            get { return email; }
-            set { email.Text = value.Text; }
-        }
-
         public Entry Name
         {
             get { return displayName; }

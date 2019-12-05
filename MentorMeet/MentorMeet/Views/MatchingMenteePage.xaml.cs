@@ -19,7 +19,7 @@ namespace MentorMeet.Views
         private BoxView profileDetailsBox;
         private BoxView[] detailCardShadow;
         private BoxView[] profilePictureShadow;
-        private BoxView profileCircle;
+        private BoxView profileCircle, goldLine;
         private ScrollView scrollView;
         private Label name;
         private Label details;
@@ -33,9 +33,6 @@ namespace MentorMeet.Views
             NavigationPage.SetHasNavigationBar(this, false);
             UIHelper helper = new UIHelper();
             currentProfessor = 0;
-            professors.Add(new Professor("LSU", "Konstantin Busch", "Distributed Algorithms and Data Structures, Communication Algorithms, and Algorithmic Game Theory"));
-            professors.Add(new Professor("LSU", "Anas Mahmoud", "Software Engineering, Requirements Engineering, Program Comprehension, and Code Analysis"));
-            professors.Add(new Professor("LSU", "William Duncan", "Knowledge Discovery and Data Mining, Bioinformatics, Stochastic Process and Markov Chains"));
 
             // For adding professors:
 
@@ -49,12 +46,12 @@ namespace MentorMeet.Views
             // Add each to professors
             AddProfessor();
 
-            int backgroundCardHeight = 500;
+            int backgroundCardHeight = 550;
             int profileDetailsHeight = backgroundCardHeight - 100;
             int cardWidth = 360;
-            int profileDetailsYStart = -50;
+            int profileDetailsYStart = -30;
             int profileCircleSize = 100;
-            int profileCircleYStart = profileDetailsYStart - 200;
+            int profileCircleYStart = profileDetailsYStart - 220;
 
             //for keeping track of the profileDetailsCard state
             tapped = false;
@@ -110,8 +107,31 @@ namespace MentorMeet.Views
             details = new Label();
             name.Text = professors[0].name;
             name.HorizontalOptions = LayoutOptions.Center;
-            name.TranslationY = profileDetailsYStart + 200;
+            name.TranslationY = profileDetailsYStart + 180;
             name.FontSize = 30;
+
+            goldLine = new BoxView
+            {
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Center,
+                WidthRequest = 300,
+                HeightRequest = 1,
+                TranslationY = name.TranslationY - 290,
+                Color = Color.Gold
+            };
+
+            Frame goldLineCircle = new Frame
+            {
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Center,
+                BorderColor = Color.Gold,
+                WidthRequest = 20,
+                HeightRequest = 20,
+                CornerRadius = 10,
+                Padding = 0,
+                TranslationY = goldLine.TranslationY,
+                HasShadow = false
+            };
 
             details.Text = professors[0].details;
             details.HorizontalTextAlignment = TextAlignment.Center;
@@ -120,15 +140,14 @@ namespace MentorMeet.Views
             scrollView = new ScrollView();
             scrollView.HorizontalOptions = LayoutOptions.Center;
             scrollView.VerticalOptions = LayoutOptions.Center;
-            scrollView.TranslationY = name.TranslationY - 150;
+            scrollView.TranslationY = name.TranslationY - 120;
             scrollView.WidthRequest = cardWidth - 75;
-            scrollView.HeightRequest = profileDetailsHeight - 100;
+            scrollView.HeightRequest = profileDetailsHeight - 160;
             scrollView.Content = details;
 
             profilePic = new Image();
             nextProfessor();
 
-            
             profilePic.HorizontalOptions = LayoutOptions.Center;
             profilePic.VerticalOptions = LayoutOptions.Center;
 
@@ -168,6 +187,8 @@ namespace MentorMeet.Views
             matchScreen.Children.Add(scrollView);
             //matchScreen.Children.Add(profilePic);
             matchScreen.Children.Add(frame);
+            matchScreen.Children.Add(goldLine);
+            matchScreen.Children.Add(goldLineCircle);
 
             checkMark = new Image();
             checkMark.Source = "check.png";
@@ -356,15 +377,11 @@ namespace MentorMeet.Views
             {
                 string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3");
                 var conn = new SQLiteConnection(dbPath);
-                var data1 = conn.Table<User>();
-                var data2 = conn.CreateTable<Matches>();
-                var data3 = conn.CreateTable<Matching>();
-
                 var possibleMentorsList = conn.Query<User>("SELECT * FROM User WHERE IsMentor = 1");
 
                 foreach (var mentor in possibleMentorsList)
                 {
-                    professors.Add(new Professor("LSU", mentor.First + " " + mentor.Last, mentor.Details));
+                    professors.Add(new Professor("LSU", mentor.First + " " + mentor.Last, mentor.Interests));
                 }
 
                 conn.Close();

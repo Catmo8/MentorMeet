@@ -23,15 +23,6 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Label
-                    Text="E-mail:"
-                    Grid.Row="0" Grid.Column="0"
-                    HorizontalOptions="End"/>
-            <Entry x:Name="email"
-                    Grid.Row="0" Grid.Column="1"
-                    VerticalOptions="Start">
-            </Entry>
-
             <Label Text="Display Name:"
                        Grid.Row="1" Grid.Column="0"/>
             <Entry x:Name="displayName"
