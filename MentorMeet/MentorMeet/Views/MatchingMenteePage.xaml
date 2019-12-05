@@ -63,6 +63,7 @@
             <Image x:Name="leftArrow" Source="arrow1" HorizontalOptions="Center" VerticalOptions="End" TranslationX="-70" TranslationY="-30" WidthRequest="100" Rotation="180"/>
             <Image Source="check" HorizontalOptions="End" VerticalOptions="End" WidthRequest="50" TranslationX="-20" TranslationY="-55"/>
             <Image Source="x" HorizontalOptions="Start" VerticalOptions="End" WidthRequest="50" TranslationX="20" TranslationY="-60"/>
+            <BoxView BackgroundColor="Gold" VerticalOptions="End" HeightRequest="1"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
