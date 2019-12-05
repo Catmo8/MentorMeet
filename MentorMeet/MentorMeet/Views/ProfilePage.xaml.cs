@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MentorMeet.Models;
+using MentorMeet.Users;
 using Plugin.Media;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using SQLite;
 
 namespace MentorMeet.Views
 {
@@ -65,7 +67,7 @@ namespace MentorMeet.Views
 
                 else if (decision == "Discard Changes")
                     ReturnToProfile();
-            }  
+            }
         }
 
         async void ReturnToProfile()
@@ -125,7 +127,7 @@ namespace MentorMeet.Views
 
             var file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
             {
-                
+
             });
 
             if (file == null)
@@ -137,6 +139,31 @@ namespace MentorMeet.Views
                 return stream;
             });
         }
+        #region Accessing User Database for Profile Page
+        async void EditUserDetails()
+        {
+            try
+            {
+                string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3");
+                var conn = new SQLiteConnection(dbPath);
+                var usersData = conn.Table<User>();
+                var currentUserData = usersData.Where(x => x.Email == CurrentUser.Email).FirstOrDefault();
+
+                currentUserData.First = CurrentUser.First; 
+                currentUserData.Last = CurrentUser.Last; 
+                currentUserData.Interests = CurrentUser.Interests; 
+                currentUserData.Details = CurrentUser.Details; 
+
+                await App.Database.UserSaveItemAsync(currentUserData);
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.ToString(), "OK");
+            }
+        }
+        #endregion
     }
 
 }

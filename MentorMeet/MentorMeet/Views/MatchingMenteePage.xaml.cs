@@ -33,9 +33,6 @@ namespace MentorMeet.Views
             NavigationPage.SetHasNavigationBar(this, false);
             UIHelper helper = new UIHelper();
             currentProfessor = 0;
-            professors.Add(new Professor("LSU", "Konstantin Busch", "Distributed Algorithms and Data Structures, Communication Algorithms, and Algorithmic Game Theory"));
-            professors.Add(new Professor("LSU", "Anas Mahmoud", "Software Engineering, Requirements Engineering, Program Comprehension, and Code Analysis"));
-            professors.Add(new Professor("LSU", "William Duncan", "Knowledge Discovery and Data Mining, Bioinformatics, Stochastic Process and Markov Chains"));
 
             // For adding professors:
 
@@ -356,15 +353,11 @@ namespace MentorMeet.Views
             {
                 string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3");
                 var conn = new SQLiteConnection(dbPath);
-                var data1 = conn.Table<User>();
-                var data2 = conn.CreateTable<Matches>();
-                var data3 = conn.CreateTable<Matching>();
-
                 var possibleMentorsList = conn.Query<User>("SELECT * FROM User WHERE IsMentor = 1");
 
                 foreach (var mentor in possibleMentorsList)
                 {
-                    professors.Add(new Professor("LSU", mentor.First + " " + mentor.Last, mentor.Details));
+                    professors.Add(new Professor("LSU", mentor.First + " " + mentor.Last, mentor.Interests));
                 }
 
                 conn.Close();
