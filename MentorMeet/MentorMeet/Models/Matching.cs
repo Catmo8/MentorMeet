@@ -7,8 +7,8 @@ namespace MentorMeet.Models
     {
         [PrimaryKey, AutoIncrement]
         public int MatchingId { get; set; }
-        public User SwipingUser { get; set; }
-        public User SwipedOnUser { get; set; }
+        public string SwipingUserEmail { get; set; }
+        public string SwipedOnUserEmail { get; set; }
         public bool SwipedRight { get; set; }
     }
 }

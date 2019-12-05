@@ -49,21 +49,6 @@ namespace MentorMeet.Views
             // Add each to professors
             AddProfessor();
 
-            try
-            {
-                string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3");
-                var conn = new SQLiteConnection(dbPath);
-                //var data1 = conn.Table<User>();
-                //var data2 = conn.CreateTable<Matches>();
-                //var data2 = conn.CreateTable<Matching>();
-                conn.CreateTable<Matches>();
-                conn.CreateTable<Matching>();
-            }
-            catch (Exception ex)
-            {
-                DisplayAlert("Error", ex.ToString(), "OK");
-            }
-
             int backgroundCardHeight = 500;
             int profileDetailsHeight = backgroundCardHeight - 100;
             int cardWidth = 360;
@@ -415,17 +400,20 @@ namespace MentorMeet.Views
                 }
             }
         }
+
+        #region Accessing Matching Database
         async void AddProfessor()
         {
             try
             {
                 string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3");
                 var conn = new SQLiteConnection(dbPath);
-                //var data1 = conn.Table<User>();
-                //var data2 = conn.CreateTable<Matches>();
-                //var data2 = conn.CreateTable<Matching>();
-                //conn.CreateTable<Matches>();
-                //conn.CreateTable<Matching>();
+                var data1 = conn.Table<User>();
+                var data2 = conn.CreateTable<Matches>();
+                var data3 = conn.CreateTable<Matching>();
+
+                //var data  = conn.Query<User>("SELECT * FROM User WHERE ")
+
                 conn.Close();
             }
             catch (Exception ex)
@@ -433,5 +421,6 @@ namespace MentorMeet.Views
                 await DisplayAlert("Error", ex.ToString(), "OK");
             }
         }
+        #endregion
     }
 }
