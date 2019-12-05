@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              xmlns:local="clr-namespace:MentorMeet.Views"
              x:Class="MentorMeet.Views.ProfilePage"
-             BackgroundColor="#FF64289A">
+             BackgroundColor="#FF461D7C">
     <ContentPage.Content>
         <Grid x:Name="profilePageGrid">
  
@@ -20,7 +20,7 @@
                     TranslationY="130"/>
 
             <BoxView x:Name="purpleCircle"
-                BackgroundColor="#FF64289A"
+                BackgroundColor="#FF461D7C"
                 HorizontalOptions="Center"
                 VerticalOptions="Start"
                 WidthRequest="200"
