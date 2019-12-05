@@ -20,7 +20,7 @@ namespace MentorMeet.Views
     {
         public ObservableCollection<Message> messages = new ObservableCollection<Message>()
         {
-            new Message("William Duncan", new DateTime(2019, 12, 1, 16, 12, 15), "Hello, World!", false),
+            new Message("William Duncan", new DateTime(2019, 12, 1, 16, 12, 15), "", false),
             new Message(CurrentUser.First + " " + CurrentUser.Last, new DateTime(2019, 12, 1, 16, 12, 15), "Lorem ipsum ", true),
             new Message(CurrentUser.First + " " + CurrentUser.Last, new DateTime(2019, 12, 1, 16, 12, 15), "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", true),
             new Message("William Duncan", new DateTime(2019, 12, 1, 16, 12, 15), "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", false)
@@ -44,15 +44,13 @@ namespace MentorMeet.Views
             // Search (fromUser == currentUser AND toUser == currentlySelectedUser) OR (fromUser == currentlySeleectedUser AND toUser == currentUser)  SORT BY time DESC
 
             // for each entry
-                // Append to messages
-                
+            // Append to messages
+
 
             messages = new ObservableCollection<Message>()
             {
-            new Message(individual.name, new DateTime(2019, 12, 1, 16, 12, 15), "Hello, World!", false),
-            new Message(CurrentUser.First + " " + CurrentUser.Last, new DateTime(2019, 12, 1, 16, 12, 15), "Lorem ipsum ", true),
-            new Message(CurrentUser.First + " " + CurrentUser.Last, new DateTime(2019, 12, 1, 16, 12, 15), "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", true),
-            new Message(individual.name, new DateTime(2019, 12, 1, 16, 12, 15), "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", false)
+            new Message(CurrentUser.First + " " + CurrentUser.Last, new DateTime(2019, 12, 1, 16, 12, 15), "Hello, I hope you're enjoying your day. I wanted to ask when would you be free to meet?", true),
+            new Message(individual.name, new DateTime(2019, 12, 1, 16, 12, 15), "My office hours today are 1-3 P.M.", false),
             };
 
             MessageList.ItemsSource = messages;
