@@ -60,10 +60,10 @@ namespace MentorMeet.Views
 
                 if (decision == "Yes")
                 {
-                    /*nameLabel.Text = profileData.Name.Text;
-                    contactInfo.Text = profileData.Email.Text;
-                    areasOfInterest.Text = profileData.Interests.Text;
-                    profileDetails.Text = profileData.Details.Text;*/
+                    CurrentUser.First = nameLabel.Text.Split(' ')[0];
+                    CurrentUser.Last = nameLabel.Text.Split(' ')[1];
+                    CurrentUser.Details = profileDetails.Text;
+                    CurrentUser.Major = areasOfInterest.Text;
                     ReturnToProfile();
                 }
 
