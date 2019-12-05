@@ -62,7 +62,8 @@ namespace MentorMeet.Views
                     CurrentUser.Last = data1.Last;
                     CurrentUser.Email = data1.Email;
                     CurrentUser.Major = data1.Major;
-                    CurrentUser.IsProfessor = data1.IsMentor;
+                    CurrentUser.IsMentor = data1.IsMentor;
+                    CurrentUser.Details = data1.Details;
 
                     conn.Close();
                     
