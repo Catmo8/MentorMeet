@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MentorMeet.Models;
 using MentorMeet.Users;
 using Plugin.Media;
+using SQLite;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SQLite;
@@ -29,11 +30,12 @@ namespace MentorMeet.Views
 
             //Binding the fields in the profile to their respective fields in profile editor
             profileData.Name.SetBinding(Entry.TextProperty, new Binding("Text", source: nameLabel));
-            profileData.Email.SetBinding(Entry.TextProperty, new Binding("Text", source: contactInfo));
             profileData.Interests.SetBinding(Editor.TextProperty, new Binding("Text", source: areasOfInterest));
             profileData.Details.SetBinding(Editor.TextProperty, new Binding("Text", source: profileDetails));
 
-
+            nameLabel.Text = CurrentUser.First + ' ' + CurrentUser.Last;
+            contactInfo.Text = CurrentUser.Email;
+            areasOfInterest.Text = CurrentUser.Major;
         }
 
         //Creates an autosized gap in the yellow line by the name
@@ -43,8 +45,10 @@ namespace MentorMeet.Views
             await Task.Delay(500);
             nameLabel.WidthRequest = nameLabel.Width + 40;
         }
-        //Changes view from profile to edit profile
-        async void EditProfileClicked(object sender, EventArgs e)
+
+    
+    //Changes view from profile to edit profile
+    async void EditProfileClicked(object sender, EventArgs e)
         {
             int moveAmount = 30;
             if (!editProfileToggle)
@@ -57,11 +61,10 @@ namespace MentorMeet.Views
 
                 if (decision == "Yes")
                 {
-                    /*nameLabel.Text = profileData.Name.Text;
-                    contactInfo.Text = profileData.Email.Text;
-                    areasOfInterest.Text = profileData.Interests.Text;
-                    profileDetails.Text = profileData.Details.Text;*/
-
+                    CurrentUser.First = nameLabel.Text.Split(' ')[0];
+                    CurrentUser.Last = nameLabel.Text.Split(' ')[1];
+                    CurrentUser.Details = profileDetails.Text;
+                    CurrentUser.Major = areasOfInterest.Text;
                     ReturnToProfile();
                 }
 

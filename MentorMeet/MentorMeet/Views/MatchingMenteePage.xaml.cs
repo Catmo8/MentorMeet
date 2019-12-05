@@ -19,7 +19,7 @@ namespace MentorMeet.Views
         private BoxView profileDetailsBox;
         private BoxView[] detailCardShadow;
         private BoxView[] profilePictureShadow;
-        private BoxView profileCircle;
+        private BoxView profileCircle, goldLine;
         private ScrollView scrollView;
         private Label name;
         private Label details;
@@ -46,12 +46,12 @@ namespace MentorMeet.Views
             // Add each to professors
             AddProfessor();
 
-            int backgroundCardHeight = 500;
+            int backgroundCardHeight = 550;
             int profileDetailsHeight = backgroundCardHeight - 100;
             int cardWidth = 360;
-            int profileDetailsYStart = -50;
+            int profileDetailsYStart = -30;
             int profileCircleSize = 100;
-            int profileCircleYStart = profileDetailsYStart - 200;
+            int profileCircleYStart = profileDetailsYStart - 220;
 
             //for keeping track of the profileDetailsCard state
             tapped = false;
@@ -107,8 +107,31 @@ namespace MentorMeet.Views
             details = new Label();
             name.Text = professors[0].name;
             name.HorizontalOptions = LayoutOptions.Center;
-            name.TranslationY = profileDetailsYStart + 200;
+            name.TranslationY = profileDetailsYStart + 180;
             name.FontSize = 30;
+
+            goldLine = new BoxView
+            {
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Center,
+                WidthRequest = 300,
+                HeightRequest = 1,
+                TranslationY = name.TranslationY - 290,
+                Color = Color.Gold
+            };
+
+            Frame goldLineCircle = new Frame
+            {
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Center,
+                BorderColor = Color.Gold,
+                WidthRequest = 20,
+                HeightRequest = 20,
+                CornerRadius = 10,
+                Padding = 0,
+                TranslationY = goldLine.TranslationY,
+                HasShadow = false
+            };
 
             details.Text = professors[0].details;
             details.HorizontalTextAlignment = TextAlignment.Center;
@@ -117,15 +140,14 @@ namespace MentorMeet.Views
             scrollView = new ScrollView();
             scrollView.HorizontalOptions = LayoutOptions.Center;
             scrollView.VerticalOptions = LayoutOptions.Center;
-            scrollView.TranslationY = name.TranslationY - 150;
+            scrollView.TranslationY = name.TranslationY - 120;
             scrollView.WidthRequest = cardWidth - 75;
-            scrollView.HeightRequest = profileDetailsHeight - 100;
+            scrollView.HeightRequest = profileDetailsHeight - 160;
             scrollView.Content = details;
 
             profilePic = new Image();
             nextProfessor();
 
-            
             profilePic.HorizontalOptions = LayoutOptions.Center;
             profilePic.VerticalOptions = LayoutOptions.Center;
 
@@ -165,6 +187,8 @@ namespace MentorMeet.Views
             matchScreen.Children.Add(scrollView);
             //matchScreen.Children.Add(profilePic);
             matchScreen.Children.Add(frame);
+            matchScreen.Children.Add(goldLine);
+            matchScreen.Children.Add(goldLineCircle);
 
             checkMark = new Image();
             checkMark.Source = "check.png";
