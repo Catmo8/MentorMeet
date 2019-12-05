@@ -13,5 +13,6 @@ namespace MentorMeet.Models
         public string Major { get; set; }
         public string Password { get; set; }
         public bool IsMentor { get; set; }
+        public string Details { get; set; }
     }
 }  

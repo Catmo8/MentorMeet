@@ -360,7 +360,12 @@ namespace MentorMeet.Views
                 var data2 = conn.CreateTable<Matches>();
                 var data3 = conn.CreateTable<Matching>();
 
-                //var data  = conn.Query<User>("SELECT * FROM User WHERE ")
+                var possibleMentorsList = conn.Query<User>("SELECT * FROM User WHERE IsMentor = 1");
+
+                foreach (var mentor in possibleMentorsList)
+                {
+                    professors.Add(new Professor("LSU", mentor.First + " " + mentor.Last, mentor.Details));
+                }
 
                 conn.Close();
             }

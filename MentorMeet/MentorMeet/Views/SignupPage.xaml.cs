@@ -50,10 +50,6 @@ namespace MentorMeet.Views
                 warningLabel.TextColor = Color.IndianRed;
                 warningLabel.IsVisible = true;
             }
-            /*else if (data1 == null)
-            {
-                await DisplayAlert("Error", "Account already exists", "OK"); 
-            }*/
             else
             {
                 User account = new User()
@@ -65,12 +61,19 @@ namespace MentorMeet.Views
                     Password = Password.Text,
                     IsMentor = isMentor,
                 };
-                using (SQLiteConnection conn = new SQLiteConnection(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3")))
+                try
                 {
+                    string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3");
+                    var conn = new SQLiteConnection(dbPath);
                     conn.CreateTable<User>();
                     int rowsAdded = conn.Insert(account);
                     conn.Close();
                 }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Error", ex.ToString(), "OK");
+                }
+
                 Navigation.PopModalAsync();
             }
 
