@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MentorMeet.Models;
 using MentorMeet.Users;
 using Xamarin.Forms;
@@ -20,56 +16,39 @@ namespace MentorMeet.Views
             InitializeComponent();
         }
 
-        //response after login button clicked
         async void LoginClicked(object sender, System.EventArgs e)
         {
-            /*
-            //check for valid LSU id
-            if (!item.checkIfLSUid())
-            {
-                textToDisplay = "Enter LSUID (with @lsu.edu) to login";
-                
-            }
-            */
-            /*
-             using (SQLiteConnection conn = new SQLiteConnection(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3")))
-            {
-                var account = conn.Table<User>().ToList();
-            }
-            if (!account.Contains(UsernameEntry.Text))
-            {
-                DisplayAlert("Message", "Username o)
-            }
-            */
             try
             {
+                //connect to database and check for existing user 
                 string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MentorMeetSQLite.db3");
                 var conn = new SQLiteConnection(dbPath);
                 var data = conn.Table<User>();
-                var data1 = data.Where(x => x.Email == UsernameEntry.Text && x.Password == PasswordEntry.Text).FirstOrDefault();
-                if((string.IsNullOrWhiteSpace(UsernameEntry.Text)) || (string.IsNullOrWhiteSpace(PasswordEntry.Text)) ||
+                var user = data.Where(x => x.Email == UsernameEntry.Text && x.Password == PasswordEntry.Text).FirstOrDefault();
+
+                if ((string.IsNullOrWhiteSpace(UsernameEntry.Text)) || (string.IsNullOrWhiteSpace(PasswordEntry.Text)) ||
                     (string.IsNullOrEmpty(UsernameEntry.Text)) || (string.IsNullOrEmpty(PasswordEntry.Text)))
                 {
                     await DisplayAlert("Error", "Username or Password is empty", "OK");
                 }
-                else if (data1 == null)
+                else if (user == null)
                 {
                     await DisplayAlert("Error", "Username or Password invalid", "OK");
                 }
                 else
                 {
-                    CurrentUser.First = data1.First;
-                    CurrentUser.Last = data1.Last;
-                    CurrentUser.Email = data1.Email;
-                    CurrentUser.Major = data1.Major;
-                    CurrentUser.IsMentor = data1.IsMentor;
-                    CurrentUser.Interests = data1.Interests;
-                    CurrentUser.Details = data1.Details;
+                    //retrieve profile fields to currently logged in user
+                    CurrentUser.First = user.First;
+                    CurrentUser.Last = user.Last;
+                    CurrentUser.Email = user.Email;
+                    CurrentUser.Major = user.Major;
+                    CurrentUser.IsMentor = user.IsMentor;
+                    CurrentUser.Interests = user.Interests;
+                    CurrentUser.Details = user.Details;
 
                     conn.Close();
-                    
+
                     await Navigation.PushModalAsync(new MainPage());
-                    
                 }
             }
             catch (Exception ex)
@@ -78,7 +57,7 @@ namespace MentorMeet.Views
             }
         }
 
-        //response after sign up button clicked
+        //navigate to Sign-Up Page
         async void SignUpClicked(object sender, System.EventArgs e)
         {
             await Navigation.PushModalAsync(new SignUpPage());
